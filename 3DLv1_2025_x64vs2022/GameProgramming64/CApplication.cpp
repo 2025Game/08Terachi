@@ -2,6 +2,7 @@
 //OpenGL
 #include "glut.h"
 #include "CVector.h"
+#include "CTriangle.h"
 
 #define SOUND_BGM "res\\mario.wav" //BGM音声ファイル
 #define SOUND_OVER "res\\mdai.wav" //ゲームオーバー音声ファイル
@@ -96,6 +97,30 @@ void CApplication::Update()
 	glVertex3f(v0.X(), v0.Y(), v0.Z());
 	glVertex3f(v1.X(), v1.Y(), v1.Z());
 	glVertex3f(v2.X(), v2.Y(), v2.Z());
+
+	//三角形クラスのインスタンス作成
+	CTriangle t0;
+	//法線と頂点の設定
+	t0.Vertex(CVector(1.0f, 0.0f, 0.5f), CVector(2.0f, 0.0f, 0.0f), CVector(1.0f, 0.0f, -0.5f));
+	t0.Normal(CVector(0.0f, 1.0f, 0.0f));
+	//三角形の描画
+	t0.Render();
+
+	//三角形クラスのインスタンス作成
+	CTriangle t1;
+	//法線と頂点の設定
+	t1.Vertex(CVector(0.5f, 1.0f, 0.0f), CVector(0.0f, 2.0f, 0.0f), CVector(-0.5f, 1.0f, 0.0f));
+	t1.Normal(CVector(0.0f, 0.0f, 1.0f));
+	//三角形の描画
+	t1.Render();
+
+	//三角形クラスのインスタンス作成
+	CTriangle t2;
+	//法線と頂点の設定
+	t2.Vertex(CVector(0.0f, 0.5f, 1.0f), CVector(0.0f, 0.0f, 2.0f), CVector(0.0f, -0.5f, 1.0f));
+	t2.Normal(CVector(1.0f, 0.0f, 0.0f));
+	//三角形の描画
+	t2.Render();
 
 	//描画終了
 	glEnd();
