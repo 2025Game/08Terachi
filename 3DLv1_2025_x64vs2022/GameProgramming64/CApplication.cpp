@@ -22,7 +22,7 @@ CCharacterManager* CApplication::CharacterManager()
 
 void CApplication::Start()
 {
-
+	mEye = CVector(1.0f, 2.0f, 3.0f);
 }
 
 void CApplication::Update()
@@ -40,7 +40,7 @@ void CApplication::Update()
 
 	//視点の設定
 	//gluLookAt(視点X, 視点Y, 視点Z, 中心X, 中心Y, 中心Z, 上向X, 上向Y, 上向Z)
-	gluLookAt(1.0f, 2.0f, 3.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+	gluLookAt(mEye.X(), mEye.Y(), mEye.Z(), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
 	//描画開始
 	//glBegin(形)
@@ -121,6 +121,33 @@ void CApplication::Update()
 	t2.Normal(CVector(1.0f, 0.0f, 0.0f));
 	//三角形の描画
 	t2.Render();
+
+	if (mInput.Key('J'))
+	{
+		mEye = mEye - CVector(0.1f, 0.0f, 0.0f);
+	}
+	if (mInput.Key('L'))
+	{
+		mEye = mEye + CVector(0.1f, 0.0f, 0.0f);
+	}
+
+	if (mInput.Key('I'))
+	{
+		mEye = mEye - CVector(0.0f, 0.0f, 0.1f);
+	}
+	if (mInput.Key('K'))
+	{
+		mEye = mEye + CVector(0.0f, 0.0f, 0.1f);
+	}
+
+	if (mInput.Key('M'))
+	{
+		mEye = mEye - CVector(0.0f, 0.1f, 0.0f);
+	}
+	if (mInput.Key('O'))
+	{
+		mEye = mEye + CVector(0.0f, 0.1f, 0.0f);
+	}
 
 	//描画終了
 	glEnd();
