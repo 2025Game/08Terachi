@@ -6,6 +6,8 @@
 
 #define SOUND_BGM "res\\mario.wav" //BGM音声ファイル
 #define SOUND_OVER "res\\mdai.wav" //ゲームオーバー音声ファイル
+//モデルデータの指定
+#define MODEL_OBJ "res\\obj.obj", "res\\obj.mtl"
 
 CCharacterManager CApplication::mCharacterManager;
 CTexture CApplication::mTexture;
@@ -23,6 +25,8 @@ CCharacterManager* CApplication::CharacterManager()
 void CApplication::Start()
 {
 	mEye = CVector(1.0f, 2.0f, 3.0f);
+	//モデルファイルの入力
+	mModel.Load(MODEL_OBJ);
 }
 
 void CApplication::Update()
@@ -148,12 +152,6 @@ void CApplication::Update()
 	{
 		mEye = mEye + CVector(0.0f, 0.1f, 0.0f);
 	}
-
-	//モデルデータの指定
-#define MODEL_OBJ "res\\obj.obj", "res\\obj.mtl"
-
-	//モデルファイルの入力
-	mModel.Load(MODEL_OBJ);
 
 	//描画終了
 	glEnd();
