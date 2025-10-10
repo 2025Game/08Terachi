@@ -149,6 +149,12 @@ void CApplication::Update()
 		mEye = mEye + CVector(0.0f, 0.1f, 0.0f);
 	}
 
+	//モデルデータの指定
+#define MODEL_OBJ "res\\obj.obj", "res\\obj.mtl"
+
+	//モデルファイルの入力
+	mModel.Load(MODEL_OBJ);
+
 	//描画終了
 	glEnd();
 }
