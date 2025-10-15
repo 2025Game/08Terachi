@@ -19,5 +19,6 @@ public:
 private:
 	CVector mV[3]; //’¸“_À•W
 	CVector mN; //–@ü
+
 };
 #endif
