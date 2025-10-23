@@ -17,6 +17,7 @@ public:
 	//Load(モデルファイル名, マテリアルファイル名)
 	void Load(const char* obj, const char* mtl);
 	void Render();
+	void normal(const CVector& n);
 private:
 	//三角形の可変長配列
 	std::vector<CTriangle> mTriangles;
