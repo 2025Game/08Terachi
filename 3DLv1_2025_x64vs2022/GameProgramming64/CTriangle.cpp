@@ -30,6 +30,16 @@ void CTriangle::Render()
 	glEnd();
 }
 
+int CTriangle::MaterialIdx()
+{
+	return 0;
+}
+
+void CTriangle::MaterialIdx(int idx)
+{
+
+}
+
 //Normal(法線ベクトル1, 法線ベクトル2, 法線ベクトル3)
 void CTriangle::Normal(const CVector& v0, const CVector& v1, const CVector& v2) 
 {

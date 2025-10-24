@@ -2,6 +2,14 @@
 #include <stdio.h>
 #include "CVector.h"
 
+CModel::~CModel()
+{
+	for (int i = 0; i < mpMaterials.size(); i++)
+	{
+		delete mpMaterials[i];
+	}
+}
+
 //文字列比較関数
 int strcmp(const char* s1, const char* s2)
 {
@@ -16,6 +24,10 @@ int strcmp(const char* s1, const char* s2)
 //モデルファイルの入力
 void CModel::Load(const char* obj, const char* mtl)
 {
+
+	//マテリアルインデックス
+	int idx = 0;
+
 	//頂点データ
 	std::vector<CVector> vertex;
 	//★法線データを追加
@@ -24,7 +36,7 @@ void CModel::Load(const char* obj, const char* mtl)
 	FILE* fp;
 	char buf[256];
 
-	//まず mtl ファイルを読む（課題6）
+	//まず mtl ファイルを読む
 	fp = fopen(mtl, "r");
 	if (fp == NULL)
 	{
@@ -34,6 +46,49 @@ void CModel::Load(const char* obj, const char* mtl)
 
 	while (fgets(buf, sizeof(buf), fp) != NULL)
 	{
+		//データを分割する
+		char str[4][64] = { "", "", "", "" };
+		//文字列からデータを4つ変数へ代入する
+		sscanf(buf, "%s %s %s %s", str[0], str[1], str[2], str[3]);
+		//先頭がnewmtlの時、マテリアルを追加する
+		if (strcmp(str[0], "newmtl") == 0) 
+		{
+			CMaterial* pm = new CMaterial();
+			//マテリアル名の設定
+			pm->Name(str[1]);
+			//マテリアルの可変長配列に追加
+			mpMaterials.push_back(pm);
+			//配列の長さを取得
+			idx = mpMaterials.size() - 1;
+		}
+		//先頭がKdの時、Diffuseを設定する
+		else if (strcmp(str[0], "Kd") == 0) 
+		{
+			mpMaterials[idx]->Diffuse()[0] = atof(str[1]);
+			mpMaterials[idx]->Diffuse()[1] = atof(str[2]);
+			mpMaterials[idx]->Diffuse()[2] = atof(str[3]);
+		}
+		//先頭がdの時、α値を設定する
+		else if (strcmp(str[0], "d") == 0) 
+		{
+			mpMaterials[idx]->Diffuse()[3] = atof(str[1]);
+		}
+		//先頭がusemtlの時、マテリアルインデックスを取得する
+		else if (strcmp(str[0], "usemtl") == 0)
+		{
+			//可変長配列を後から比較
+			for (idx = mpMaterials.size() - 1; idx > 0; idx--)
+			{
+				//同じ名前のマテリアルがあればループ終了
+				if (strcmp(mpMaterials[idx]->Name(), str[1]) == 0) 
+				{
+					break; //ループから出る
+				}
+			}
+
+		}
+
+
 		printf("%s", buf); // コンソールに出力
 	}
 	fclose(fp); // mtl ファイルを閉じる
@@ -48,6 +103,7 @@ void CModel::Load(const char* obj, const char* mtl)
 
 	while (fgets(buf, sizeof(buf), fp) != NULL)
 	{
+
 		char str[4][64] = { "", "", "", "" };
 		sscanf(buf, "%s %s %s %s", str[0], str[1], str[2], str[3]);
 
@@ -93,7 +149,7 @@ void CModel::Load(const char* obj, const char* mtl)
 					normal[n[2] - 1]
 				);
 			}
-
+			
 			mTriangles.push_back(t);
 		}
 
@@ -108,6 +164,8 @@ void CModel::Render()
 {
 	for (int i = 0; i < mTriangles.size(); i++)
 	{
+		//マテリアルの適用
+		mpMaterials[mTriangles[i].MaterialIdx()]->Enabled();
 		mTriangles[i].Render();
 	}
 }
