@@ -24,7 +24,6 @@ private:
 	std::vector<CMaterial*> mpMaterials;
 	//ŽOŠpŒ`‚Ì‰Â•Ï’·”z—ñ
 	std::vector<CTriangle> mTriangles;
-
 };
 
 #endif
