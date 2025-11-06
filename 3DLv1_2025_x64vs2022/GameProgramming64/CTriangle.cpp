@@ -35,12 +35,12 @@ void CTriangle::Render()
 
 int CTriangle::MaterialIdx()
 {
-	return 0;
+	return mMaterialIdx;
 }
 
 void CTriangle::MaterialIdx(int idx)
 {
-
+	mMaterialIdx = idx;
 }
 
 //Normal(法線ベクトル1, 法線ベクトル2, 法線ベクトル3)

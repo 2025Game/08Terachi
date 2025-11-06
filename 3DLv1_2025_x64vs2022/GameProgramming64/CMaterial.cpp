@@ -5,12 +5,10 @@
 
 /*
 * strncpy(char* str1, const char* str2, int len)
-* コピー先str1にコピー元str2の文字をlen文字数までコピーする
 */
 char* strncpy(char* str1, const char* str2, int len)
 {
 	int i = 0;
-	//iがlenより小さく、かつ、コピー元が終わりでない間繰り返し
 	while (i < len && *str2 != '\0')
 	{
 		*(str1 + i) = *str2; //コピー先にコピー元を代入

@@ -74,6 +74,25 @@ void CModel::Load(const char* obj, const char* mtl)
 		{
 			mpMaterials[idx]->Texture()->Load(str[1]);
 		}
+		//先頭がusemtlの時、マテリアルインデックスを取得する
+		else if (strcmp(str[0], "usemtl") == 0) 
+		{
+			bool found = false;
+			// 0 まで比較するように修正
+			for (idx = mpMaterials.size() - 1; idx >= 0; idx--) 
+			{
+				if (strcmp(mpMaterials[idx]->Name(), str[1]) == 0) 
+				{
+					found = true;
+					break; // 同じ名前が見つかったらループ終了
+				}
+			}
+			if (!found)
+			{
+				printf("Warning: material %s not found!\n", str[1]);
+				idx = 0; // デフォルトのマテリアルに戻す
+			}
+		}
 
 		printf("%s", buf); // コンソール出力
 	}
