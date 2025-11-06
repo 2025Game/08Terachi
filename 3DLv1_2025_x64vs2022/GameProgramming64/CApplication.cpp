@@ -44,11 +44,11 @@ void CApplication::Update()
         0.0f, 0.0f, 0.0f,
         0.0f, 1.0f, 0.0f
     );
-
+//ƒ‚ƒfƒ‹•`‰æ
+    mModel.Render();
    
     mBackGround.Render();
   
-    //ƒ‚ƒfƒ‹•`‰æ
-    mModel.Render();
+    
 
 }

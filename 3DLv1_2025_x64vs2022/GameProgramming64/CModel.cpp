@@ -74,25 +74,6 @@ void CModel::Load(const char* obj, const char* mtl)
 		{
 			mpMaterials[idx]->Texture()->Load(str[1]);
 		}
-		//先頭がusemtlの時、マテリアルインデックスを取得する
-		else if (strcmp(str[0], "usemtl") == 0) 
-		{
-			bool found = false;
-			// 0 まで比較するように修正
-			for (idx = mpMaterials.size() - 1; idx >= 0; idx--) 
-			{
-				if (strcmp(mpMaterials[idx]->Name(), str[1]) == 0) 
-				{
-					found = true;
-					break; // 同じ名前が見つかったらループ終了
-				}
-			}
-			if (!found)
-			{
-				printf("Warning: material %s not found!\n", str[1]);
-				idx = 0; // デフォルトのマテリアルに戻す
-			}
-		}
 
 		printf("%s", buf); // コンソール出力
 	}
@@ -126,6 +107,26 @@ void CModel::Load(const char* obj, const char* mtl)
 		{
 			uv.push_back(CVector(atof(str[1]), atof(str[2]), 0.0));
 		}
+		else if (strcmp(str[0], "usemtl") == 0)
+		{
+			bool found = false;
+			for (idx = (int)mpMaterials.size() - 1; idx >= 0; idx--)
+			{
+				if (strcmp(mpMaterials[idx]->Name(), str[1]) == 0)
+				{
+					found = true;
+					break;
+				}
+			}
+			if (!found)
+			{
+				printf("Warning: material %s not found!\n", str[1]);
+				idx = 0;
+			}
+
+			printf("usemtl %s -> idx=%d\n", str[1], idx); // デバッグ表示
+		}
+
 		// 面データ
 		else if (strcmp(str[0], "f") == 0)
 		{
