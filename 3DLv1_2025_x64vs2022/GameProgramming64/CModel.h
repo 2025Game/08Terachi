@@ -13,6 +13,10 @@
 class CModel
 {
 public:
+	//描画
+	//Render(行列)
+	void Render(const CMatrix& m);
+
 	~CModel();
 	//モデルファイルの入力
 	//Load(モデルファイル名, マテリアルファイル名)
