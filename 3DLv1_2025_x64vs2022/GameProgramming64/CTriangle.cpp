@@ -81,3 +81,4 @@ void CTriangle::Render(const CMatrix& m)
 	glVertex3f(mV[2].X(), mV[2].Y(), mV[2].Z());
 	glEnd();
 }
+ 

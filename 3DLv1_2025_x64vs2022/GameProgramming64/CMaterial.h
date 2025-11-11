@@ -8,7 +8,7 @@
 マテリアルクラス
 マテリアルのデータを扱う
 */
-class CMaterial 
+class CMaterial  
 {
 public:
 	//テクスチャの取得

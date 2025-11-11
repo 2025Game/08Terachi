@@ -53,3 +53,4 @@ void CApplication::Update()
     mBackGround.Render();
 
 }
+ 

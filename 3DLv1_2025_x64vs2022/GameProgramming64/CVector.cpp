@@ -57,3 +57,4 @@ CVector CVector::operator*(const CMatrix& m) const
 		mX * m.M(0, 2) + mY * m.M(1, 2) + mZ * m.M(2, 2) + m.M(3, 2)
 	);
 }
+ 

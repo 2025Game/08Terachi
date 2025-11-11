@@ -67,7 +67,7 @@ float* CMaterial::Diffuse()
 void CMaterial::Disabled() 
 {
 	//テクスチャ有り
-	if (mTexture.Id())
+	if (mTexture.Id()) 
 	{
 		//アルファブレンドを無効
 		glDisable(GL_BLEND);

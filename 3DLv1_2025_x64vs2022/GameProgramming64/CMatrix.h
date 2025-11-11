@@ -6,7 +6,7 @@
 マトリクスクラス
 4行4列の行列データを扱います
 */
-class CMatrix
+class CMatrix 
 {
 public:
 

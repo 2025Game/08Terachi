@@ -45,7 +45,7 @@ CMatrix CMatrix::Identity()
     // ‚±‚Ìs—ñ‚ğ•Ô‚·
     return *this;
 }
-
+ 
 // Šg‘åk¬s—ñ‚Ìì¬
 CMatrix CMatrix::Scale(float x, float y, float z)
 {

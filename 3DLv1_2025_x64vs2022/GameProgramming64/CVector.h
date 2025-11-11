@@ -9,7 +9,7 @@ class CMatrix;
 */
 class CVector 
 {
-public:	
+public:	 
 	//CVector * CMatrix‚ÌŒ‹‰Ê‚ðCVector‚Å•Ô‚·
 	CVector operator*(const CMatrix& m) const;
 
