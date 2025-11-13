@@ -110,4 +110,23 @@ CMatrix CMatrix::RotateX(float degree)
     //行列を返す
     return *this;
 }
+//移動行列の作成
+//Translate(移動量X, 移動量Y, 移動量Z)
+CMatrix CMatrix::Translate(float mx, float my, float mz) 
+{
+        // 単位行列にする
+        Identity();
 
+        // 移動成分の設定
+        mM[3][0] = mx;  // X方向の移動量
+        mM[3][1] = my;  // Y方向の移動量
+        mM[3][2] = mz;  // Z方向の移動量
+
+        // この行列を返す
+        return *this;
+    }
+
+void CMatrix::M(int row, int col, float value)
+{
+    mM[row][col] = value;
+}
