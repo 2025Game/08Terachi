@@ -29,7 +29,7 @@ CCharacterManager* CApplication::CharacterManager()
 void CApplication::Start()
 {
     //カメラ初期位置
-    mEye = CVector(1.0f, 5.0f, 20.0f); 
+    mEye = CVector(1.0f, 2.0f, 3.0f);
     //モデルファイルの入力
     mModel.Load(MODEL_OBJ);
     //背景モデルの入力
@@ -48,7 +48,13 @@ void CApplication::Update()
         0.0f, 1.0f, 0.0f
     );
 //モデル描画
-    mModel.Render(CMatrix().Translate(-2.0f, 0.0f, -15.0f));
+    CMatrix matrix, position, rotation, scale;
+    position.Translate(0.5f, 1.8f, 0.5f); //移動行列設定
+    rotation.RotateY(180.0f); //回転行列設定
+    scale.Scale(0.1f, 0.1f, 0.1f); //拡大縮小行列設定
+    matrix = scale * rotation * position; //合成行列設定
+    mModel.Render(matrix); //モデルの描画
+
    
     mBackGround.Render();
 
