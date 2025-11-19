@@ -1,6 +1,7 @@
 #include "CModel.h"
 #include <stdio.h>
 #include "CVector.h"
+#include "CApplication.h"
 
 CModel::~CModel()
 {

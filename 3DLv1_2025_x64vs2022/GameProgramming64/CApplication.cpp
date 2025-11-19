@@ -5,6 +5,8 @@
 #include "CTriangle.h"
 #include "CModel.h"
 #include "CMatrix.h"
+#include "CTransform.h"
+#include "CCharacter3.h"
 
 #define SOUND_BGM "res\\mario.wav" //BGM音声ファイル
 #define SOUND_OVER "res\\mdai.wav"  //ゲームオーバー音声ファイル
@@ -28,8 +30,24 @@ CCharacterManager* CApplication::CharacterManager()
 
 void CApplication::Start()
 {
+    mModel.Load("model.obj", "model.mtl");
+    mCharacter.Model(&mModel);
+    mCharacter.Scale(CVector(0.1f, 0.1f, 0.1f));
+
+    mPlayer.Model(&mModel);
+    mPlayer.Scale(CVector(0.1f, 0.1f, 0.1f));
+    mPlayer.Position(CVector(0.0f, 0.0f, -3.0f));
+    mPlayer.Rotation(CVector(0.0f, 180.0f, 0.0f));
+    mPlayer.Update();
+
+    mPlayer2.Model(&mModel);
+    mPlayer2.Scale(CVector(1.0f, 1.0f, 1.0f));
+    mPlayer2.Position(CVector(0.0f, 0.0f, -24.0f)); 
+    mPlayer2.Rotation(CVector(0.0f, 180.0f, 0.0f));
+    mPlayer2.Update();
+
     //カメラ初期位置
-    mEye = CVector(1.0f, 2.0f, 3.0f);
+    mEye = CVector(26.0f, 10.0f, 10.0f);
     //モデルファイルの入力
     mModel.Load(MODEL_OBJ);
     //背景モデルの入力
@@ -40,6 +58,7 @@ void CApplication::Start()
 
 void CApplication::Update()
 {
+
     //視点の設定
     gluLookAt
     (
@@ -47,16 +66,19 @@ void CApplication::Update()
         0.0f, 0.0f, 0.0f,
         0.0f, 1.0f, 0.0f
     );
-//モデル描画
-    CMatrix matrix, position, rotation, scale;
-    position.Translate(0.5f, 1.8f, 0.5f); //移動行列設定
-    rotation.RotateY(180.0f); //回転行列設定
-    scale.Scale(0.1f, 0.1f, 0.1f); //拡大縮小行列設定
-    matrix = scale * rotation * position; //合成行列設定
-    mModel.Render(matrix); //モデルの描画
+    mCharacter.Update();
+    mCharacter.Render();
 
+//モデル描画
+    CTransform trans; //変換行列インスタンスの作成
+    trans.Position(CVector(0.5f, 1.8f, 0.5f)); //位置の設定
+    trans.Rotation(CVector(-10.0f, -20.0f, -30.0f)); //回転の設定
+    trans.Scale(CVector(0.1f, 0.1f, 0.1f)); //拡大縮小の設定
+    trans.Update(); //行列の更新
+    mModel.Render();
+    mPlayer.Render();
+    mPlayer2.Render();
    
     mBackGround.Render();
-
 }
  

@@ -10,10 +10,15 @@
 #include "CGame.h"
 #include "CVector.h"
 #include "CModel.h"
+#include "CCharacter3.h"
 
 class CApplication
 {
 public:
+	CCharacter3 mPlayer2;
+	CModel mModel;
+	CCharacter3 mPlayer;
+	CCharacter3 mCharacter;
 	static CTexture* Texture();
 	static CCharacterManager* CharacterManager();
 	enum class EState
@@ -30,8 +35,7 @@ public:
 	void Update();
 private:
 	CModel mBackGround; //背景モデル
-	//モデルクラスのインスタンス作成
-	CModel mModel;
+	//モデルクラスのインスタンス
 	CVector mEye;
 	CSound mSoundBgm;
 	CSound mSoundOver;
