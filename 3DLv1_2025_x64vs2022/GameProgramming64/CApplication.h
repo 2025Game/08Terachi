@@ -15,7 +15,6 @@
 class CApplication
 {
 public:
-	CCharacter3 mPlayer2;
 	CModel mModel;
 	CCharacter3 mPlayer;
 	CCharacter3 mCharacter;

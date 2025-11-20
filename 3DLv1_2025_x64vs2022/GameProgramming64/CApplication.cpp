@@ -40,14 +40,8 @@ void CApplication::Start()
     mPlayer.Rotation(CVector(0.0f, 180.0f, 0.0f));
     mPlayer.Update();
 
-    mPlayer2.Model(&mModel);
-    mPlayer2.Scale(CVector(1.0f, 1.0f, 1.0f));
-    mPlayer2.Position(CVector(0.0f, 0.0f, -24.0f)); 
-    mPlayer2.Rotation(CVector(0.0f, 180.0f, 0.0f));
-    mPlayer2.Update();
-
     //カメラ初期位置
-    mEye = CVector(26.0f, 10.0f, 10.0f);
+    mEye = CVector(1.0f, 2.0f, 3.0f);
     //モデルファイルの入力
     mModel.Load(MODEL_OBJ);
     //背景モデルの入力
@@ -77,7 +71,6 @@ void CApplication::Update()
     trans.Update(); //行列の更新
     mModel.Render();
     mPlayer.Render();
-    mPlayer2.Render();
    
     mBackGround.Render();
 }
