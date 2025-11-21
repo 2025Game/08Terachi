@@ -11,12 +11,11 @@
 #include "CVector.h"
 #include "CModel.h"
 #include "CCharacter3.h"
-
 class CApplication
 {
 public:
 	CModel mModel;
-	CCharacter3 mPlayer;
+	CPlayer mPlayer; 
 	CCharacter3 mCharacter;
 	static CTexture* Texture();
 	static CCharacterManager* CharacterManager();

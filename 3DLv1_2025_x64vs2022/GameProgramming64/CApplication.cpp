@@ -61,6 +61,7 @@ void CApplication::Update()
         0.0f, 1.0f, 0.0f
     );
     mCharacter.Update();
+    mPlayer.Update();
     mCharacter.Render();
 
 //ƒ‚ƒfƒ‹•`‰æ
@@ -69,7 +70,6 @@ void CApplication::Update()
     trans.Rotation(CVector(-10.0f, -20.0f, -30.0f)); //‰ñ“]‚Ìİ’è
     trans.Scale(CVector(0.1f, 0.1f, 0.1f)); //Šg‘åk¬‚Ìİ’è
     trans.Update(); //s—ñ‚ÌXV
-    mModel.Render();
     mPlayer.Render();
    
     mBackGround.Render();
