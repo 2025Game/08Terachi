@@ -87,4 +87,17 @@ void CTriangle::Render(const CMatrix& m)
 	glVertex3f(mV[2].X(), mV[2].Y(), mV[2].Z());
 	glEnd();
 }
- 
+// í∏ì_ç¿ïW
+const CVector& CTriangle::V0() const { return mV[0]; }
+const CVector& CTriangle::V1() const { return mV[1]; }
+const CVector& CTriangle::V2() const { return mV[2]; }
+
+// ñ@ê¸
+const CVector& CTriangle::N0() const { return mN[0]; }
+const CVector& CTriangle::N1() const { return mN[1]; }
+const CVector& CTriangle::N2() const { return mN[2]; }
+
+// UV
+const CVector& CTriangle::U0() const { return mUv[0]; }
+const CVector& CTriangle::U1() const { return mUv[1]; }
+const CVector& CTriangle::U2() const { return mUv[2]; }

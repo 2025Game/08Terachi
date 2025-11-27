@@ -5,6 +5,7 @@
 #include <vector>
 #include "CTriangle.h"
 #include "CMaterial.h"
+#include "CVertex.h"
 
 /*
 モデルクラス
@@ -25,6 +26,9 @@ public:
 	void Render();
 	void normal(const CVector& n);
 private:
+	//頂点の配列
+	CVertex* mpVertexes;
+	void CreateVertexBuffer();
 	//マテリアルポインタの可変長配列
 	std::vector<CMaterial*> mpMaterials;
 	//三角形の可変長配列
