@@ -12,6 +12,8 @@
 class CCharacter3 : public CTransform 
 {
 public:
+	// 前方向ベクトルを得る
+	CVector Z() const;
 	//モデルの設定
 	//Model(モデルクラスのポインタ)
 	void Model(CModel* m);

@@ -1,4 +1,5 @@
 #include "CTransform.h"
+#include "CCharacter3.h"
 
 const CVector& CTransform::Position() const
 {

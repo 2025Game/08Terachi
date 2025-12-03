@@ -30,9 +30,7 @@ CCharacterManager* CApplication::CharacterManager()
 
 void CApplication::Start()
 {
-    mModel.Load("model.obj", "model.mtl");
-    mCharacter.Model(&mModel);
-    mCharacter.Scale(CVector(0.1f, 0.1f, 0.1f));
+    mModel.Load(MODEL_OBJ);
 
     mPlayer.Model(&mModel);
     mPlayer.Scale(CVector(0.1f, 0.1f, 0.1f));
@@ -52,24 +50,24 @@ void CApplication::Start()
 
 void CApplication::Update()
 {
-
-    //視点の設定
-    gluLookAt
-    (
-        mEye.X(), mEye.Y(), mEye.Z(),
-        0.0f, 0.0f, 0.0f,
-        0.0f, 1.0f, 0.0f
-    );
-    mCharacter.Update();
     mPlayer.Update();
-    mCharacter.Render();
+    //カメラのパラメータを作成する
+    CVector e, c, u;//視点、注視点、上方向
+    //視点を求める
+    e = mPlayer.Position() + CVector(0, 1, -3) * mPlayer.MatrixRotate();
+        //注視点を求める
+        c = mPlayer.Position();
+    //上方向を求める
+        u = CVector(0, 1, 0) * mPlayer.MatrixRotate();
+        //カメラの設定
+        gluLookAt(e.X(), e.Y(), e.Z(), c.X(), c.Y(), c.Z(), u.X(), u.Y(), u.Z());
 
 //モデル描画
-    CTransform trans; //変換行列インスタンスの作成
+    CCharacter3 trans; //変換行列インスタンスの作成
     trans.Position(CVector(0.5f, 1.8f, 0.5f)); //位置の設定
     trans.Rotation(CVector(-10.0f, -20.0f, -30.0f)); //回転の設定
     trans.Scale(CVector(0.1f, 0.1f, 0.1f)); //拡大縮小の設定
-    trans.Update(); //行列の更新
+    trans.Update(); //行列の更新 
     mPlayer.Render();
    
     mBackGround.Render();

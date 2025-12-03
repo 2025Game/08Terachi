@@ -77,7 +77,7 @@ void CModel::Load(const char* obj, const char* mtl)
 			mpMaterials[idx]->Texture()->Load(str[1]);
 		}
 
-		printf("%s", buf); // コンソール出力
+		//printf("%s", buf); // コンソール出力
 	}
 	fclose(fp);
 
@@ -163,7 +163,7 @@ void CModel::Load(const char* obj, const char* mtl)
 				mTriangles.push_back(t);
 			}
 		}
-		printf("%s", buf); // コンソール出力
+		//printf("%s", buf); // コンソール出力
 	}
 
 	fclose(fp);
