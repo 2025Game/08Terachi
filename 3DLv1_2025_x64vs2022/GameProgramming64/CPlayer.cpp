@@ -8,25 +8,14 @@
 CPlayer::CPlayer(const CVector& pos, const CVector& rot
 	, const CVector& scale)
 {
-	//Sキー入力で上向き
-	if (mInput.Key('S')) 
-	{
-		//X軸の回転値を減算
-		mRotation = mRotation - ROTATION_XV;
-	}
-	//Wキー入力で下向き
-	if (mInput.Key('W')) 
-	{
-		//X軸の回転値を加算
-		mRotation = mRotation + ROTATION_XV;
-	}
-
 	CTransform::Update(pos, rot, scale); //行列の更新
 }
 
 //更新処理
 void CPlayer::Update() 
 {
+	//スペースキー入力で発射
+	
 	//Dキー入力で回転
 	if (mInput.Key('D')) 
 	{
@@ -44,6 +33,19 @@ void CPlayer::Update()
 		// Y軸の回転値を増加（左回転）
 		mRotation = mRotation + ROTATION_YV;
 	}
+	//Sキー入力で上向き
+	if (mInput.Key('S')) 
+	{
+		//X軸の回転値を減算
+		mRotation = mRotation - ROTATION_XV;
+	}
+	//Wキー入力で下向き
+	if (mInput.Key('W')) 
+	{
+		//X軸の回転値を加算
+		mRotation = mRotation + ROTATION_XV;
+	}
+
 	//変換行列の更新
 	CTransform::Update();
 }
