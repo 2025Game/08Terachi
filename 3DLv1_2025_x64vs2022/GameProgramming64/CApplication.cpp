@@ -40,8 +40,6 @@ void CApplication::Start()
 
     //カメラ初期位置
     mEye = CVector(1.0f, 2.0f, 3.0f);
-    //モデルファイルの入力
-    mModel.Load(MODEL_OBJ);
     //背景モデルの入力
     mBackGround.Load(MODEL_BACKGROUND);
     CMatrix matrix;

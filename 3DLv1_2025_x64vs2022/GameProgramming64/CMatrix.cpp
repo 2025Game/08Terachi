@@ -124,7 +124,7 @@ CMatrix CMatrix::Translate(float mx, float my, float mz)
 
         // ‚±‚Ìs—ñ‚ğ•Ô‚·
         return *this;
-    }
+}
 
 void CMatrix::M(int row, int col, float value)
 {

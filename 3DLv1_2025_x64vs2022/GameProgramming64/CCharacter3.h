@@ -9,7 +9,7 @@
 キャラクタークラス
 ゲームキャラクタの基本的な機能を定義する
 */
-class CCharacter3 : public CTransform 
+class CCharacter3 : public CTransform
 {
 public:
 	// 前方向ベクトルを得る
@@ -22,5 +22,4 @@ public:
 protected:
 	CModel* mpModel; //モデルのポインタ
 };
-
 #endif

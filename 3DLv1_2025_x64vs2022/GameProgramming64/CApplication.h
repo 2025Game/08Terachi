@@ -11,6 +11,7 @@
 #include "CVector.h"
 #include "CModel.h"
 #include "CCharacter3.h"
+
 class CApplication
 {
 public:
@@ -36,7 +37,6 @@ private:
 	CVector mEye;
 	CSound mSoundBgm;
 	CSound mSoundOver;
-
 	CGame* mpGame;
 	static CCharacterManager mCharacterManager;
 	EState mState;
