@@ -1,5 +1,6 @@
 #include "CVector.h"
 #include "CMatrix.h"
+
 CVector::CVector()
 	:mX(0.0f)
 	,mY(0.0f)
@@ -57,4 +58,8 @@ CVector CVector::operator*(const CMatrix& m) const
 		mX * m.M(0, 2) + mY * m.M(1, 2) + mZ * m.M(2, 2) + m.M(3, 2)
 	);
 }
- 
+// CVector * float
+CVector CVector::operator*(float s) const
+{
+	return CVector(mX * s, mY * s, mZ * s);
+}

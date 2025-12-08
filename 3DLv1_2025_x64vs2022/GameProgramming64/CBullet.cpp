@@ -1,66 +1,47 @@
 #include "CBullet.h"
-#include "CApplication.h"
 
-void CBullet::Collision()
+void CBullet::Set(float w, float d)
 {
-	CApplication::CharacterManager()->Collision(this);
-}
+    // 左、右、奥（先端）
+    CVector v0(-w, 0.0f, 0.0f);   // 左
+    CVector v1(w, 0.0f, 0.0f);   // 右
+    CVector v2(0.0f, 0.0f, -d);  // 奥（先端）
 
-void CBullet::Collision(CCharacter* m, CCharacter* o)
-{
-	switch (o->Tag())
-	{
-	case ETag::EBULLET:
-		break;
-	default:
-		if (CRectangle::Collision(o))
-		{
-			mState = EState::ESTOP;
-			mEnabled = false;
-		}
-	}
-}
+    // 三角形の頂点設定
+    mT.Vertex(v0, v1, v2);
 
-CBullet::CBullet(float x, float y, float w, float h, float l, float r, float b, float t, CTexture* pt)
-{
-	Set(x, y, w, h);
-	Texture(pt, l, r, b, t);
-	mState = EState::EMOVE;
-	mTag = ETag::EBULLET;
-}
-
-CBullet::CBullet()
-{
-	mState = EState::ESTOP;
-	mTag = ETag::EBULLET;
-}
-
-bool CBullet::Collision(CRectangle* rect)
-{
-	if (CRectangle::Collision(rect))
-	{
-		mState = EState::ESTOP;
-		return true;
-	}
-	return false;
+    // 法線設定
+    mT.Normal(CVector(0.0f, 1.0f, 0.0f));  // 上向き法線
 }
 
 void CBullet::Update()
 {
-	if (mState == EState::EMOVE)
-	{
-		float y = Y() + H();
-		if (y > 620.0f)
-		{
-			y = 0.0f;
-		}
-		Y(y);
-	}
+    // 基底クラスの更新（行列更新）
+    CTransform::Update();
+
+    // 前方向(Z軸方向) に 0.2f 進める
+    mPosition = mPosition + Z() * 0.2f;
+
+
 }
 
-//void CBullet::Render()
-//{
-//	glColor3f(1.0f, 1.0f, 0.0f);
-//	CRectangle::Render();
-//	glColor3f(1.0f, 1.0f, 1.0f);
-//}
+void CBullet::Render()
+{
+    // 三角形描画
+    //glBegin(GL_TRIANGLES);
+    // DIFFUSE黄色設定
+    float c[] = { 1.0f, 1.0f, 0.0f, 1.0f };
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, c);
+    mT.Render(mMatrix);
+
+    //const CVector& v0 = mT.V0();
+    //const CVector& v1 = mT.V1();
+    //const CVector& v2 = mT.V2();
+
+    //glVertex3f(v0.X(), v0.Y(), v0.Z());
+    //glVertex3f(v1.X(), v1.Y(), v1.Z());
+    //glVertex3f(v2.X(), v2.Y(), v2.Z());
+
+    //glEnd();
+}
+

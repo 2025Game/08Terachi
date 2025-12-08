@@ -10,6 +10,9 @@ class CMatrix;
 class CVector 
 {
 public:	 
+	// CVector * float のオーバーロード
+	CVector operator*(float s) const;
+
 	//CVector * CMatrixの結果をCVectorで返す
 	CVector operator*(const CMatrix& m) const;
 

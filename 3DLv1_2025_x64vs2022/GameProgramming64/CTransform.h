@@ -7,7 +7,8 @@
 トランスフォームクラス
 位置、回転、拡縮、変換行列の基本クラス
 */
-class CTransform {
+class CTransform 
+{
 public:
 	//位置の取得
 	const CVector& Position() const;
@@ -22,7 +23,7 @@ public:
 	void Scale(const CVector& v);
 	//合成行列の取得
 	const CMatrix& Matrix() const;
-	//回転行列の取得
+	//回転行列の取得 
 	const CMatrix& MatrixRotate() const;
 	//行列更新処理
 	void Update();
