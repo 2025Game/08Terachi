@@ -10,6 +10,7 @@ class CMatrix;
 class CVector 
 {
 public:	 
+
 	// CVector * float のオーバーロード
 	CVector operator*(float s) const;
 
@@ -26,6 +27,8 @@ public:
 
 	//デフォルトコンストラクタ
 	CVector();
+	void Normalize();
+	CVector Normalized() const;
 	//コンストラクタ
 	//CVector(X座標, Y座標, Z座標)
 	CVector(float x, float y, float z);
@@ -39,6 +42,7 @@ public:
 	float Y() const;
 	//Zの値を得る
 	float Z() const;
+
 private:
 	//3D各軸での値を設定
 	float mX, mY, mZ;

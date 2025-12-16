@@ -12,8 +12,10 @@
 class CBullet : public CCharacter3
 {
 public:
+	CVector mDir;     // 進行方向
+	float mSpeed;     // 速度
+	bool mIsShot;     // 発射中フラグ
 	bool mActive;      // 弾が生きているか
-	float mSpeed;      // 弾の速さ
 
 	CBullet()
 		: mActive(false),

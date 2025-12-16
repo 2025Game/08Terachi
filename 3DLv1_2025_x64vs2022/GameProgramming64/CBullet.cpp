@@ -2,37 +2,44 @@
 
 void CBullet::Set(float w, float d)
 {
-    // 左、右、奥（先端）
-    CVector v0(-w, 0.0f, 0.0f);   // 左
-    CVector v1(w, 0.0f, 0.0f);   // 右
-    CVector v2(0.0f, 0.0f, -d);  // 奥（先端）
+    mScale = CVector(1.0f, 1.0f, 1.0f);
+    CVector v0(-w * 0.5f, 0.0f, 0.0f);
+    CVector v1(w * 0.5f, 0.0f, 0.0f);
+    CVector v2(0.0f, 0.0f, -d);
 
-    // 三角形の頂点設定
     mT.Vertex(v0, v1, v2);
-
-    // 法線設定
-    mT.Normal(CVector(0.0f, 1.0f, 0.0f));  // 上向き法線
+    mT.Normal(CVector(0.0f, 1.0f, 0.0f));
+    mDir = CVector(0.0f, 0.0f, 1.0f);
+    mSpeed = 0.5f;
 }
+
 
 void CBullet::Update()
 {
-    // 基底クラスの更新（行列更新）
+    if (!mActive) return;
+    // 前方向(Z方向)へ進む
+    mPosition = mPosition + (mDir * mSpeed) * mMatrixRotate;
+
+    // 行列更新
     CTransform::Update();
-
-    // 前方向(Z軸方向) に 0.2f 進める
-    mPosition = mPosition + Z() * 0.2f;
-
-
+    if (mPosition.Z() > 50.0f || mPosition.Z() < -50.0f)
+    {
+        mActive = false;
+    }
 }
+
 
 void CBullet::Render()
 {
+    if (!mActive) return;
     // 三角形描画
     //glBegin(GL_TRIANGLES);
     // DIFFUSE黄色設定
     float c[] = { 1.0f, 1.0f, 0.0f, 1.0f };
     glMaterialfv(GL_FRONT, GL_DIFFUSE, c);
     mT.Render(mMatrix);
+    glPushMatrix();
+    glPopMatrix();
 
     //const CVector& v0 = mT.V0();
     //const CVector& v1 = mT.V1();

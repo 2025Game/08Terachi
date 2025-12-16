@@ -17,6 +17,7 @@ class CApplication
 public:
 	CModel mModel;
 	CPlayer mPlayer; 
+	CBullet mBullet;
 	static CTexture* Texture();
 	static CCharacterManager* CharacterManager();
 	enum class EState

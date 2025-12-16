@@ -1,6 +1,8 @@
 #include "CPlayer.h"
 #include "CApplication.h"
 #include "CCharacter3.h"
+#include "CBullet.h"
+
 #define ROTATION_YV	CVector(0.0f, 1.0f, 0.0f) //回転速度
 #define VELOCITY CVector(0.0f, 0.0f, 0.1f) //移動速度
 #define ROTATION_XV	CVector(1.0f, 0.0f, 0.0f) //回転速度
@@ -14,14 +16,20 @@ CPlayer::CPlayer(const CVector& pos, const CVector& rot
 //更新処理
 void CPlayer::Update() 
 {
-	//スペースキー入力で発射
-	if (mInput.Key(VK_SPACE))
+	if (mShotTimer > 0)
+		mShotTimer--;
+	if (mInput.Key(VK_SPACE) && mShotTimer == 0)
 	{
-		bullet.Set(0.1f, 1.5f);
-		bullet.Position(CVector(0.0f, 0.0f, 10.0f) * mMatrix);
-		bullet.Rotation(mRotation);
-	}
 
+		{
+			bullet.Set(0.2f, 0.5f);
+			bullet.Position(Position());
+			bullet.Rotation(mRotation);
+			bullet.mActive = true;
+			mShotTimer = 15;
+		}
+	}
+		
 	//Dキー入力で回転
 	if (mInput.Key('D')) 
 	{
@@ -51,7 +59,7 @@ void CPlayer::Update()
 		//X軸の回転値を加算
 		mRotation = mRotation + ROTATION_XV;
 	}
-
+bullet.Update();
 	//変換行列の更新
 	CTransform::Update();
 }

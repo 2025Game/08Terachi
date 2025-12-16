@@ -44,6 +44,10 @@ void CApplication::Start()
     mBackGround.Load(MODEL_BACKGROUND);
     CMatrix matrix;
     matrix.Print();
+    mBullet.Set(0.2f, 0.5f);
+    mBullet.Position(CVector(0.0f, 0.0f, -3.0f));
+    mBullet.Rotation(CVector(0.0f, 0.0f, 0.0f));
+    mBullet.mActive = false;
 }
 
 void CApplication::Update()
@@ -67,9 +71,11 @@ void CApplication::Update()
     trans.Scale(CVector(0.1f, 0.1f, 0.1f)); //ägëÂèkè¨ÇÃê›íË
     trans.Update(); //çsóÒÇÃçXêV 
     mPlayer.Render();
+    mPlayer.Update();
     mPlayer.bullet.Update();
     mPlayer.bullet.Render();
-
+    mBullet.Update();
+    mBullet.Render();
     mBackGround.Render();
 }
  
