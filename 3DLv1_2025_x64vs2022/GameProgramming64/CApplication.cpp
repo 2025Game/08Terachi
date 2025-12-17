@@ -7,6 +7,7 @@
 #include "CMatrix.h"
 #include "CTransform.h"
 #include "CCharacter3.h"
+#include "CTask.h"
 
 #define SOUND_BGM "res\\mario.wav" //BGM音声ファイル
 #define SOUND_OVER "res\\mdai.wav"  //ゲームオーバー音声ファイル
@@ -69,13 +70,19 @@ void CApplication::Update()
     trans.Position(CVector(0.5f, 1.8f, 0.5f)); //位置の設定
     trans.Rotation(CVector(-10.0f, -20.0f, -30.0f)); //回転の設定
     trans.Scale(CVector(0.1f, 0.1f, 0.1f)); //拡大縮小の設定
-    trans.Update(); //行列の更新 
+   
     mPlayer.Render();
     mPlayer.Update();
     mPlayer.bullet.Update();
     mPlayer.bullet.Render();
-    mBullet.Update();
-    mBullet.Render();
+    //タスクマネージャの更新
+    mTaskManager.Update();
+    //タスクマネージャの描画
+    mTaskManager.Render();
     mBackGround.Render();
 }
- 
+CTaskManager CApplication::mTaskManager;
+CTaskManager* CApplication::TaskManager()
+{
+    return &mTaskManager;
+}

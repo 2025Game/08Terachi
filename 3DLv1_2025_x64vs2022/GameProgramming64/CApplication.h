@@ -11,10 +11,12 @@
 #include "CVector.h"
 #include "CModel.h"
 #include "CCharacter3.h"
+#include "CTaskManager.h"
 
 class CApplication
 {
 public:
+	static CTaskManager* TaskManager();
 	CModel mModel;
 	CPlayer mPlayer; 
 	CBullet mBullet;
@@ -33,6 +35,7 @@ public:
 	//繰り返し実行するプログラム
 	void Update();
 private:
+	static CTaskManager mTaskManager;
 	CModel mBackGround; //背景モデル
 	//モデルクラスのインスタンス
 	CVector mEye;
