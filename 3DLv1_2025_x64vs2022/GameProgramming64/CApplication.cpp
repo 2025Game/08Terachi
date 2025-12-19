@@ -16,6 +16,11 @@
 //背景モデルデータの指定
 #define MODEL_BACKGROUND "res\\sky.obj", "res\\sky.mtl"
 
+CTaskManager CApplication::mTaskManager;
+CTaskManager* CApplication::TaskManager()
+{
+    return &mTaskManager;
+}
 CCharacterManager CApplication::mCharacterManager;
 CTexture CApplication::mTexture;
 
@@ -48,7 +53,6 @@ void CApplication::Start()
     mBullet.Set(0.2f, 0.5f);
     mBullet.Position(CVector(0.0f, 0.0f, -3.0f));
     mBullet.Rotation(CVector(0.0f, 0.0f, 0.0f));
-    mBullet.mActive = false;
 }
 
 void CApplication::Update()
@@ -71,18 +75,11 @@ void CApplication::Update()
     trans.Rotation(CVector(-10.0f, -20.0f, -30.0f)); //回転の設定
     trans.Scale(CVector(0.1f, 0.1f, 0.1f)); //拡大縮小の設定
    
-    mPlayer.Render();
-    mPlayer.Update();
-    mPlayer.bullet.Update();
-    mPlayer.bullet.Render();
     //タスクマネージャの更新
     mTaskManager.Update();
     //タスクマネージャの描画
     mTaskManager.Render();
+    mPlayer.Render();
+    mPlayer.Update();
     mBackGround.Render();
-}
-CTaskManager CApplication::mTaskManager;
-CTaskManager* CApplication::TaskManager()
-{
-    return &mTaskManager;
 }

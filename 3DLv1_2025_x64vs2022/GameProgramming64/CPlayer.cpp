@@ -2,7 +2,7 @@
 #include "CApplication.h"
 #include "CCharacter3.h"
 #include "CBullet.h"
-
+#include "CTaskManager.h"
 #define ROTATION_YV	CVector(0.0f, 1.0f, 0.0f) //回転速度
 #define VELOCITY CVector(0.0f, 0.0f, 0.1f) //移動速度
 #define ROTATION_XV	CVector(1.0f, 0.0f, 0.0f) //回転速度
@@ -16,19 +16,19 @@ CPlayer::CPlayer(const CVector& pos, const CVector& rot
 //更新処理
 void CPlayer::Update() 
 {
-	if (mShotTimer > 0)
-		mShotTimer--;
-	if (mInput.Key(VK_SPACE) && mShotTimer == 0)
+	if (mInput.Key(VK_SPACE))
 	{
-
-		{
-			bullet.Set(0.2f, 0.5f);
-			bullet.Position(Position());
-			bullet.Rotation(mRotation);
-			bullet.mActive = true;
-			mShotTimer = 15;
-		}
-	}
+		CBullet* bullet = new CBullet();
+		bullet->Set(0.1f, 1.5f);
+		bullet->Position(CVector(0.0f, 0.0f, 10.0f) * mMatrix);
+		bullet->Rotation(mRotation);
+		bullet->Update();
+		CApplication::TaskManager()->Add(bullet);
+}
+else
+{
+	mShot = false;
+}
 		
 	//Dキー入力で回転
 	if (mInput.Key('D')) 

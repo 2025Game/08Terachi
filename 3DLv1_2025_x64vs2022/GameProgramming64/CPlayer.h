@@ -12,18 +12,15 @@
 class CPlayer : public CCharacter3 
 {
 public:
-	int mShotTimer;
-	void Update();
-	
-	CBullet bullet;
-	CPlayer() {}
-	//CPlayer(位置, 回転, スケール)
-	CPlayer(const CVector& pos, const CVector& rot
-		, const CVector& scale);
-	
+    CPlayer() : mShot(false) {}
+    CPlayer(const CVector& pos, const CVector& rot, const CVector& scale);
+
+    void Update();
+
 private:
-	bool mShot = false;
-	CInput mInput;
+    CInput mInput;
+    bool mShot;     
+    CBullet bullet;
 };
 
 #endif
