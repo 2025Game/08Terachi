@@ -17,11 +17,18 @@ void CBullet::Set(float w, float d)
 
 void CBullet::Update()
 {
-    // 進行方向(Z方向)へ進む
-    mPosition = mPosition + CVector(0.0f, 0.0f, 1.0f) * mMatrixRotate;
-
-    // 行列更新
-    CTransform::Update();
+    //生存時間の判定
+    if (mLife-- > 0)
+    {
+        CTransform::Update();
+        //位置更新
+        mPosition = mPosition + CVector(0.0f, 0.0f, 1.0f) * mMatrixRotate;;
+    }
+    else 
+    {
+        //無効にする
+        mEnabled = false;
+    }
 }
 
 void CBullet::Render()

@@ -50,9 +50,9 @@ void CApplication::Start()
     mBackGround.Load(MODEL_BACKGROUND);
     CMatrix matrix;
     matrix.Print();
-    mBullet.Set(0.2f, 0.5f);
-    mBullet.Position(CVector(0.0f, 0.0f, -3.0f));
-    mBullet.Rotation(CVector(0.0f, 0.0f, 0.0f));
+    //mBullet.Set(0.2f, 0.5f);
+    //mBullet.Position(CVector(0.0f, 0.0f, -3.0f));
+    //mBullet.Rotation(CVector(0.0f, 0.0f, 0.0f));
 }
 
 void CApplication::Update()
@@ -70,16 +70,16 @@ void CApplication::Update()
         gluLookAt(e.X(), e.Y(), e.Z(), c.X(), c.Y(), c.Z(), u.X(), u.Y(), u.Z());
 
 //モデル描画
-    CCharacter3 trans; //変換行列インスタンスの作成
-    trans.Position(CVector(0.5f, 1.8f, 0.5f)); //位置の設定
-    trans.Rotation(CVector(-10.0f, -20.0f, -30.0f)); //回転の設定
-    trans.Scale(CVector(0.1f, 0.1f, 0.1f)); //拡大縮小の設定
+    //CCharacter3 trans; //変換行列インスタンスの作成
+    //trans.Position(CVector(0.5f, 1.8f, 0.5f)); //位置の設定
+    //trans.Rotation(CVector(-10.0f, -20.0f, -30.0f)); //回転の設定
+    //trans.Scale(CVector(0.1f, 0.1f, 0.1f)); //拡大縮小の設定
    
     //タスクマネージャの更新
     mTaskManager.Update();
+    //タスクリストの削除
+    mTaskManager.Delete();
     //タスクマネージャの描画
     mTaskManager.Render();
-    mPlayer.Render();
-    mPlayer.Update();
     mBackGround.Render();
 }

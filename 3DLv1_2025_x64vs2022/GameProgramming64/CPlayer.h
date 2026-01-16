@@ -16,11 +16,12 @@ public:
     CPlayer(const CVector& pos, const CVector& rot, const CVector& scale);
 
     void Update();
+    void Render();
 
 private:
     CInput mInput;
-    bool mShot;     
-    CBullet bullet;
+    bool mShot; 
+    //CBullet bullet;
 };
 
 #endif

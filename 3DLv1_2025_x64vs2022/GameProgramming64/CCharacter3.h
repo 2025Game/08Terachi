@@ -13,6 +13,10 @@
 class CCharacter3 : public CTransform, public CTask
 {
 public:
+	//コンストラクタ
+	CCharacter3();
+	//デストラクタ
+	~CCharacter3();
 	// 前方向ベクトルを得る
 	CVector Z() const;
 	//モデルの設定

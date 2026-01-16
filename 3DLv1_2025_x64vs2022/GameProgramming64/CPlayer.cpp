@@ -23,7 +23,7 @@ void CPlayer::Update()
 		bullet->Position(CVector(0.0f, 0.0f, 10.0f) * mMatrix);
 		bullet->Rotation(mRotation);
 		bullet->Update();
-		CApplication::TaskManager()->Add(bullet);
+		//CApplication::TaskManager()->Add(bullet);
 }
 else
 {
@@ -59,7 +59,14 @@ else
 		//X²‚Ì‰ñ“]’l‚ğ‰ÁZ
 		mRotation = mRotation + ROTATION_XV;
 	}
-bullet.Update();
+//bullet.Update();
 	//•ÏŠ·s—ñ‚ÌXV
 	CTransform::Update();
 }
+
+void CPlayer::Render()
+{
+	CCharacter3::Render();  // ‹@‘Ì‚ğ•`‚­
+	//bullet.Render();        // ’e‚ğ•`‚­
+}
+
