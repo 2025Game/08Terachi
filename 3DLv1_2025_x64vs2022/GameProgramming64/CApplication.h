@@ -34,6 +34,8 @@ public:
 	//繰り返し実行するプログラム
 	void Update();
 private:
+	//C5モデル
+	CModel mModelC5;
 	static CTaskManager mTaskManager;
 	CModel mBackGround; //背景モデル
 	//モデルクラスのインスタンス
@@ -49,5 +51,6 @@ private:
 	CPlayer* mpPlayer;
 	CBullet* mpBullet;
 	static CTexture mTexture;
-	CEnemy* mpEnemy;
+	CEnemy* mpEnemy1;
+	CEnemy* mpEnemy2;
 };

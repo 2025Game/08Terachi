@@ -15,6 +15,8 @@
 #define MODEL_OBJ "res\\f14.obj", "res\\f14.mtl" 
 //背景モデルデータの指定
 #define MODEL_BACKGROUND "res\\sky.obj", "res\\sky.mtl"
+//敵輸送機モデル
+#define MODEL_C5 "res\\c5.obj", "res\\c5.mtl"
 
 CTaskManager CApplication::mTaskManager;
 CTaskManager* CApplication::TaskManager()
@@ -36,6 +38,19 @@ CCharacterManager* CApplication::CharacterManager()
 
 void CApplication::Start()
 {
+    //C5モデルの読み込み
+    mModelC5.Load(MODEL_C5);
+     
+    //敵機のインスタンス作成
+    mpEnemy1 = new CEnemy(&mModelC5, CVector(0.0f, 10.0f, -100.0f),
+        CVector(), CVector(0.1f, 0.1f, 0.1f));
+
+    mpEnemy2 = new CEnemy(&mModelC5,
+        CVector(30.0f, 10.0f, -130.0f),
+        CVector(), CVector(0.1f, 0.1f, 0.1f));
+
+    
+
     mModel.Load(MODEL_OBJ);
 
     mPlayer.Model(&mModel);
@@ -69,6 +84,17 @@ void CApplication::Update()
         //カメラの設定
         gluLookAt(e.X(), e.Y(), e.Z(), c.X(), c.Y(), c.Z(), u.X(), u.Y(), u.Z());
 
+        if (mpEnemy1)
+        {
+            mpEnemy1->Update();
+            mpEnemy1->Render();
+        }
+
+        if (mpEnemy2)
+        {
+            mpEnemy2->Update();
+            mpEnemy2->Render();
+        }
 //モデル描画
     //CCharacter3 trans; //変換行列インスタンスの作成
     //trans.Position(CVector(0.5f, 1.8f, 0.5f)); //位置の設定
