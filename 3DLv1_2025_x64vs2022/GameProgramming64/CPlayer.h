@@ -17,11 +17,10 @@ public:
 
     void Update();
     void Render();
-
+    CBullet bullet;
 private:
     CInput mInput;
     bool mShot; 
-    //CBullet bullet;
 };
 
 #endif

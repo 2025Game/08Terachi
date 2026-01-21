@@ -83,6 +83,7 @@ void CApplication::Update()
         u = CVector(0, 1, 0) * mPlayer.MatrixRotate();
         //カメラの設定
         gluLookAt(e.X(), e.Y(), e.Z(), c.X(), c.Y(), c.Z(), u.X(), u.Y(), u.Z());
+        mPlayer.Render();
 
         if (mpEnemy1)
         {
@@ -100,7 +101,7 @@ void CApplication::Update()
     //trans.Position(CVector(0.5f, 1.8f, 0.5f)); //位置の設定
     //trans.Rotation(CVector(-10.0f, -20.0f, -30.0f)); //回転の設定
     //trans.Scale(CVector(0.1f, 0.1f, 0.1f)); //拡大縮小の設定
-   
+    
     //タスクマネージャの更新
     mTaskManager.Update();
     //タスクリストの削除

@@ -49,6 +49,7 @@ void CTransform::Update()
 		CMatrix().RotateZ(mRotation.Z()) *
 		CMatrix().RotateX(mRotation.X()) *
 		CMatrix().RotateY(mRotation.Y());
+	mRotationMatrix = mMatrixRotate;
 	//•½sˆÚ“®s—ñ‚Ìİ’è
 	mMatrixTranslate.Translate(mPosition.X(), mPosition.Y(), mPosition.Z());
 	//‡¬s—ñ‚Ìİ’è
