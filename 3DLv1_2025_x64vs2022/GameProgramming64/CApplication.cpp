@@ -109,4 +109,6 @@ void CApplication::Update()
     //タスクマネージャの描画
     mTaskManager.Render();
     mBackGround.Render();
+    mPlayer.bullet.Update();
+    mPlayer.bullet.Render();
 }
