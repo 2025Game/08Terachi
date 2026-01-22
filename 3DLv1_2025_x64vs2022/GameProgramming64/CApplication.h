@@ -17,7 +17,7 @@ class CApplication
 public:
 	static CTaskManager* TaskManager();
 	CModel mModel;
-	CPlayer mPlayer; 
+	CPlayer mPlayer;
 	//CBullet mBullet;
 	static CTexture* Texture();
 	static CCharacterManager* CharacterManager();

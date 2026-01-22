@@ -9,16 +9,19 @@
 プレイヤークラス
 キャラクタクラスを継承
 */
-class CPlayer : public CCharacter3 
+class CPlayer : public CCharacter3
 {
 public:
+    CPlayer() : mShot(false) {}
     CPlayer(const CVector& pos, const CVector& rot, const CVector& scale);
 
     void Update();
     void Render();
-    CBullet bullet;
+
 private:
     CInput mInput;
+    bool mShot;
+    //CBullet bullet;
 };
 
 #endif

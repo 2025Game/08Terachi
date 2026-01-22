@@ -1,10 +1,10 @@
-#pragma once
 #ifndef CBULLET_H
 #define CBULLET_H
+//キャラクタクラスのインクルード
 #include "CCharacter3.h"
+//三角形クラスのインクルード
 #include "CTriangle.h"
-#include "CCollider.h"
-
+#include "CCollider.h" 
 /*
 弾クラス
 三角形を飛ばす
@@ -12,17 +12,34 @@
 class CBullet : public CCharacter3
 {
 public:
-    CBullet(); 
+	CVector mDir;     // 進行方向
+	float mSpeed;     // 速度
+	bool mIsShot;     // 発射中フラグ
+	bool mActive;      // 弾が生きているか
 
-    //幅と奥行きの設定
-    void Set(float w, float d);
-    //更新
-    void Update();
-    //描画
-    void Render();
+	CBullet()
+		: mLife(50),
+		mActive(false),
+		mSpeed(10.0f),
+		mIsShot(false),
+		mCollider(this, &mMatrix, CVector(0.0f, 0.0f, 0.0f), 0.1f)
+	{
+	}
+
+	//幅と奥行きの設定
+	//Set(幅, 奥行)
+	void Set(float w, float d);
+	//更新
+	void Update();
+	//描画
+	void Render();
 private:
-    CTriangle mT;     // 三角形
-    CCollider mCollider; 
+	//生存時間
+	int mLife;
+
+	//三角形
+	CTriangle mT;
+	CCollider mCollider;
 };
 
 #endif
