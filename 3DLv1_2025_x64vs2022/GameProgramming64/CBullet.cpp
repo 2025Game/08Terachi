@@ -39,7 +39,6 @@ void CBullet::Render()
 
     // ŽOŠpŒ`•`‰æ
     mT.Render(mMatrix);
-    mCollider.Render();
 }
 //const CVector& v0 = mT.V0();
 //const CVector& v1 = mT.V1();

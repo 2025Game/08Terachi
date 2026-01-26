@@ -79,17 +79,6 @@ void CApplication::Update()
     //カメラの設定
     gluLookAt(e.X(), e.Y(), e.Z(), c.X(), c.Y(), c.Z(), u.X(), u.Y(), u.Z());
 
-    if (mpEnemy1)
-    {
-        mpEnemy1->Update();
-        mpEnemy1->Render();
-    }
-
-    if (mpEnemy2)
-    {
-        mpEnemy2->Update();
-        mpEnemy2->Render();
-    }
     //モデル描画
         //CCharacter3 trans; //変換行列インスタンスの作成
         //trans.Position(CVector(0.5f, 1.8f, 0.5f)); //位置の設定
@@ -103,4 +92,5 @@ void CApplication::Update()
     //タスクマネージャの描画
     CTaskManager::Instance()->Render();
     mBackGround.Render();
+    CCollisionManager::Instance()->Render();
 }
