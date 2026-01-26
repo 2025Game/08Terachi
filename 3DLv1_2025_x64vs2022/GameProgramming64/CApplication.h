@@ -36,7 +36,6 @@ public:
 private:
 	//C5モデル
 	CModel mModelC5;
-	static CTaskManager mTaskManager;
 	CModel mBackGround; //背景モデル
 	//モデルクラスのインスタンス
 	CVector mEye;

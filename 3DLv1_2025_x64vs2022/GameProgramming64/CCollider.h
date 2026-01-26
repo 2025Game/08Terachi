@@ -3,14 +3,20 @@
 #define CCOLLIDER_H
 //キャラクタクラスのインクルード
 #include "CCharacter3.h"
+#include "CCollisionManager.h"
 
 /*
 コライダクラス
 衝突判定データ
 */
-class CCollider : public CTransform 
-{
+class CCollider : public CTransform, public CTask
+{	
 public:
+	~CCollider()
+	{
+		//コリジョンリストから削除
+		CCollisionManager::Instance()->Remove(this);
+	};
 	//コンストラクタ
 	//CCollider(親, 親行列, 位置, 半径)
 	CCollider(CCharacter3* parent, CMatrix* matrix,

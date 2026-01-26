@@ -1,7 +1,10 @@
 #include "CCollider.h"
+#include "CCollisionManager.h"
 CCollider::CCollider(CCharacter3* parent, CMatrix* matrix,
 	const CVector& position, float radius)
 {
+	//コリジョンマネージャに追加
+CCollisionManager::Instance()->Add(this);
 	//親設定
 	mpParent = parent;
 	//親行列設定
@@ -32,3 +35,4 @@ void CCollider::Render()
 	glutWireSphere(mRadius, 16, 16);
 	glPopMatrix();
 }
+

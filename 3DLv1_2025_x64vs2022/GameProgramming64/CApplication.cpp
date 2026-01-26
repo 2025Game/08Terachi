@@ -18,11 +18,6 @@
 //敵輸送機モデル
 #define MODEL_C5 "res\\c5.obj", "res\\c5.mtl"
 
-CTaskManager CApplication::mTaskManager;
-CTaskManager* CApplication::TaskManager()
-{
-    return &mTaskManager;
-}
 CCharacterManager CApplication::mCharacterManager;
 CTexture CApplication::mTexture;
 
@@ -102,10 +97,10 @@ void CApplication::Update()
         //trans.Scale(CVector(0.1f, 0.1f, 0.1f)); //拡大縮小の設定
 
         //タスクマネージャの更新
-    mTaskManager.Update();
+    CTaskManager::Instance()->Update();
     //タスクリストの削除
-    mTaskManager.Delete();
+    CTaskManager::Instance()->Delete();
     //タスクマネージャの描画
-    mTaskManager.Render();
+    CTaskManager::Instance()->Render();
     mBackGround.Render();
 }
