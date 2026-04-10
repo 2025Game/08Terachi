@@ -10,6 +10,8 @@ class CMatrix;
 class CVector 
 {
 public:	 
+	//ベクトルの長さを返す
+	float Length() const;
 
 	// CVector * float のオーバーロード
 	CVector operator*(float s) const;

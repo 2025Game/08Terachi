@@ -27,3 +27,7 @@ void CEnemy::Update()
 	//ˆÊ’u‚ğˆÚ“®
 	mPosition = mPosition + VELOCITY * mMatrixRotate;
 }
+void CEnemy::Hit()
+{
+    mActive = false;   // –³Œø‰» ¨ Á‚¦‚é
+}

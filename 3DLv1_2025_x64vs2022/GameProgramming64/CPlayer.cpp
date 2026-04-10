@@ -29,6 +29,7 @@ void CPlayer::Update()
 	{
 		mShot = false;
 	}
+	bullet.Update();
 
 	//DƒL[“ü—Í‚Å‰ñ“]
 	if (mInput.Key('D'))

@@ -89,6 +89,8 @@ void CApplication::Update()
     CTaskManager::Instance()->Update();
     //タスクリストの削除
     CTaskManager::Instance()->Delete();
+    //コリジョンマネージャの衝突処理
+    CCollisionManager::Instance()->Collision();
     //タスクマネージャの描画
     CTaskManager::Instance()->Render();
     mBackGround.Render();

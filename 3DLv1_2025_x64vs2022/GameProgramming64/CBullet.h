@@ -12,6 +12,10 @@
 class CBullet : public CCharacter3
 {
 public:
+	//衝突処理
+//Collision(コライダ1, コライダ2)
+	void Collision(CCollider* m, CCollider* o);
+
 	CVector mDir;     // 進行方向
 	float mSpeed;     // 速度
 	bool mIsShot;     // 発射中フラグ

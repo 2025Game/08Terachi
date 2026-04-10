@@ -19,6 +19,7 @@ public:
     void Render();
 
 private:
+    CBullet bullet;
     CInput mInput;
     bool mShot;
     //CBullet bullet;

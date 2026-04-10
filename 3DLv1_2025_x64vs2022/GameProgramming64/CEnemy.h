@@ -16,7 +16,9 @@ public:
 		const CVector& rotation, const CVector& scale);
 	//更新処理
 	void Update();
+	void Hit();
 private:
+	bool mActive;
 	//コライダ
 	CCollider mCollider1;
 	CCollider mCollider2;

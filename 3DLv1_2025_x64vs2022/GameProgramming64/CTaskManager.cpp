@@ -1,19 +1,19 @@
 #include "CTaskManager.h"
 //デフォルトコンストラクタ
-void CTaskManager::Delete() 
+void CTaskManager::Delete()
 {
-	//先頭から最後まで繰り返し
 	CTask* task = mHead.mpNext;
-	while (task->mpNext) 
+	while (task != &mTail)
 	{
-		CTask* del = task;
-		//次へ
-		task = task->mpNext;
-		//mEnabledがfalseなら削除
-		if (del->mEnabled == false) 
+		CTask* next = task->mpNext;
+
+		if (!task->mEnabled)
 		{
-			delete del;
+			Remove(task);
+			delete task;
 		}
+
+		task = next;
 	}
 }
 

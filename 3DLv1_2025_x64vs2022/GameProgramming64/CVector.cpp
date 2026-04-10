@@ -1,6 +1,7 @@
 #include "CVector.h"
 #include "CMatrix.h"
 #include <cmath>
+#include <math.h>
 
 CVector::CVector()
 	:mX(0.0f)
@@ -84,4 +85,10 @@ CVector CVector::Normalized() const
 		return CVector(mX / len, mY / len, mZ / len);
 	}
 	return *this;
+}
+//ƒxƒNƒgƒ‹‚Ì’·‚³‚ğ•Ô‚·
+float CVector::Length() const 
+{
+	//sqrtŠÖ”‚Å•½•ûª‚ğ•Ô‚·
+	return sqrtf(mX * mX + mY * mY + mZ * mZ);
 }
