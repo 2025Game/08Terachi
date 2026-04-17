@@ -23,7 +23,7 @@ void CEnemy::Collision(CCollider* m, CCollider* o)
 		CVector adjust; //調整値
 		//三角コライダと球コライダの衝突判定
 		if (CCollider::CollisionTriangleSphere(o, m, &adjust))
-		{	//衝突しない位置まで戻す
+		{    //衝突しない位置まで戻す
 			mPosition = mPosition + adjust;
 		}
 		break;
