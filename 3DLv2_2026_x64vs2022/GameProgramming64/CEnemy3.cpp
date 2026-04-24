@@ -4,13 +4,14 @@
 #include "CPlayer.h"
 #define OBJ "res\\f16.obj"	//モデルのファイル
 #define MTL "res\\f16.mtl"	//モデルのマテリアルファイル
+#define HP 3	//耐久値
 
 CModel CEnemy3::sModel;	//モデルデータ作成
 
 //デフォルトコンストラクタ
 CEnemy3::CEnemy3()
 	: CCharacter3(1)
-	, mCollider1(this, &mMatrix, CVector(0.0f, 0.0f, 0.0f), 0.4f)
+	, mCollider1(this, &mMatrix, CVector(0.0f, 0.0f, 0.0f), 0.4f), mHp(HP)
 {
 	//モデルが無いときは読み込む
 	if (sModel.Triangles().size() == 0)
@@ -37,6 +38,22 @@ CEnemy3::CEnemy3(const CVector& position, const CVector& rotation,
 //更新処理
 void CEnemy3::Update()
 {
+	//HPが0以下の時　撃破
+	if (mHp <= 0)
+	{
+		mHp--;
+		//15フレーム毎にエフェクト
+		if (mHp % 15 == 0)
+		{
+			//エフェクト生成
+			new CEffect(mPosition, 1.0f, 1.0f, "exp.tga", 4, 4, 2);
+		}
+		//下降させる
+		mPosition = mPosition - CVector(0.0f, 0.03f, 0.0f);
+		CTransform::Update();
+		return;
+	}
+
 	//プレイヤーのポインタが0以外の時
 	CPlayer* player = CPlayer::Instance();
 	if (player != nullptr)
@@ -47,12 +64,14 @@ void CEnemy3::Update()
 		float dx = vp.Dot(mMatrixRotate.VectorX());
 		//上ベクトルとの内積を求める
 		float dy = vp.Dot(mMatrixRotate.VectorY());
+		float dz = vp.Dot(mMatrixRotate.VectorZ()); 
 
 		//X軸のズレが2.0未満
 		if (-2.0f < dx && dx < 2.0f)
 		{
 			//Y軸のズレが2.0未満
 			if (-2.0f < dy && dy < 2.0f)
+				if (0.0f < dz && dz < 30.0f)
 			{
 				//弾を発射します
 				CBullet* bullet = new CBullet();
@@ -82,6 +101,7 @@ void CEnemy3::Collision(CCollider* m, CCollider* o)
 				new CEffect(o->Parent()->Position(), 1.0f, 1.0f, "exp.tga", 4, 4, 2);
 				//衝突している時は無効にする
 				//mEnabled = false;
+				mHp--;
 			}
 			break;
 		case CCollider::EType::ETRIANGLE: //三角コライダの時
@@ -90,6 +110,11 @@ void CEnemy3::Collision(CCollider* m, CCollider* o)
 			if (CCollider::CollisionTriangleSphere(o, m, &adjust))
 			{    //衝突しない位置まで戻す
 				mPosition = mPosition + adjust;
+				mHp--;
+				if (mHp <= 0)
+				{
+					mEnabled = false;
+				}
 			}
 			break;
 		}
