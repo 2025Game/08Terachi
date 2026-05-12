@@ -13,6 +13,7 @@ class CEnemy3 : public CCharacter3 {
 public:
 	//コンストラクタ
 	CEnemy3();
+	//目標地点の設定
 	//CEnemy3(位置, 回転, 拡縮)
 	CEnemy3(const CVector& position, const CVector& rotation,
 		const CVector& scale);
@@ -23,6 +24,7 @@ public:
 	void Collision(CCollider* m, CCollider* o);
 	void Collision();
 private:
+	CVector mPoint;	//目標地点
 	int mHp;	//ヒットポイント
 	//モデルデータ
 	static CModel sModel;
