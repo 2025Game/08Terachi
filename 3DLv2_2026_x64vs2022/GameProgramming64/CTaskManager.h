@@ -2,7 +2,7 @@
 #define CTASKMANAGER_H
 //タスククラスのインクルード
 #include "CTask.h"
-
+#include "CGameScene.h"
 /*
 タスクマネージャ
 タスクリストの管理

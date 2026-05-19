@@ -1,4 +1,5 @@
 #include "CTaskManager.h"
+#include "CGameScene.h"
 //デフォルトコンストラクタ
 CTaskManager::CTaskManager()
 {
