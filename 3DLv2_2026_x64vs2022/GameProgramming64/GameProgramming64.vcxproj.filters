@@ -28,9 +28,6 @@
     <Filter Include="ソース ファイル\BaseSystem\Scene">
       <UniqueIdentifier>{3c227f7c-ddb2-4784-ab38-415c920afe0e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\BaseSystem\Model">
-      <UniqueIdentifier>{6a29a97d-9e51-4df9-bc2f-45706126b7af}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\BaseSystem\Object">
       <UniqueIdentifier>{e6a697b9-348b-439c-a539-1efb4cc6b9c9}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,9 @@
     </Filter>
     <Filter Include="ソース ファイル\BaseSystem\Task">
       <UniqueIdentifier>{d779df0d-8703-49a2-a8c5-7101b96c25c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\BaseSystem\Object\Character\Model">
+      <UniqueIdentifier>{6a29a97d-9e51-4df9-bc2f-45706126b7af}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -129,24 +129,6 @@
     <ClCompile Include="CCollisionManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CModelX.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CMyShader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CShader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CShadowMap.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CShadowShader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CXCharacter.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CEnemy3.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -160,13 +142,13 @@
       <Filter>ソース ファイル\Game\Scene</Filter>
     </ClCompile>
     <ClCompile Include="CMaterial.cpp">
-      <Filter>ソース ファイル\BaseSystem\Model</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
     </ClCompile>
     <ClCompile Include="CModel.cpp">
-      <Filter>ソース ファイル\BaseSystem\Model</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
     </ClCompile>
     <ClCompile Include="CTriangle.cpp">
-      <Filter>ソース ファイル\BaseSystem\Model</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
     </ClCompile>
     <ClCompile Include="CCharacter3.cpp">
       <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
@@ -176,6 +158,24 @@
     </ClCompile>
     <ClCompile Include="CTaskManager.cpp">
       <Filter>ソース ファイル\BaseSystem\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="CMyShader.cpp">
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="CModelX.cpp">
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="CShader.cpp">
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="CShadowMap.cpp">
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="CShadowShader.cpp">
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="CXCharacter.cpp">
+      <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,24 +269,6 @@
     <ClInclude Include="CColliderTriangle.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CModelX.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CMyShader.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CShader.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CShadowMap.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CShadowShader.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CXCharacter.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CEnemy3.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -303,16 +285,16 @@
       <Filter>ソース ファイル\Game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="CMaterial.h">
-      <Filter>ソース ファイル\BaseSystem\Model</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
     </ClInclude>
     <ClInclude Include="CModel.h">
-      <Filter>ソース ファイル\BaseSystem\Model</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
     </ClInclude>
     <ClInclude Include="CTriangle.h">
-      <Filter>ソース ファイル\BaseSystem\Model</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
     </ClInclude>
     <ClInclude Include="CVertex.h">
-      <Filter>ソース ファイル\BaseSystem\Model</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
     </ClInclude>
     <ClInclude Include="CCharacter3.h">
       <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
@@ -325,6 +307,24 @@
     </ClInclude>
     <ClInclude Include="CTask.h">
       <Filter>ソース ファイル\BaseSystem\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="CMyShader.h">
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="CModelX.h">
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="CShader.h">
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="CShadowMap.h">
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="CShadowShader.h">
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="CXCharacter.h">
+      <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
