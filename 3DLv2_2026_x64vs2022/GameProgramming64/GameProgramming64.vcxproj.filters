@@ -40,6 +40,9 @@
     <Filter Include="ソース ファイル\BaseSystem\Object\Character\Model">
       <UniqueIdentifier>{6a29a97d-9e51-4df9-bc2f-45706126b7af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Game\Character">
+      <UniqueIdentifier>{c50524bd-568a-4127-ab9c-5917ea3b69b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CApplication.cpp">
@@ -176,6 +179,9 @@
     </ClCompile>
     <ClCompile Include="CXCharacter.cpp">
       <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="CXPlayer.cpp">
+      <Filter>ソース ファイル\Game\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -325,6 +331,9 @@
     </ClInclude>
     <ClInclude Include="CXCharacter.h">
       <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="CXPlayer.h">
+      <Filter>ソース ファイル\Game\Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
