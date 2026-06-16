@@ -6,7 +6,6 @@ void CXPlayer::Update()
 {
 	//課題4.2 GRAVITYの大きさだけ、下方向へ移動させる
 	mPosition = mPosition + CVector(0.0f, -GRAVITY, 0.0f);
-	Collision();
 	//親クラスの更新
 	CXCharacter::Update();
 }
@@ -14,7 +13,7 @@ void CXPlayer::Update()
 CXPlayer::CXPlayer()
 {
 	mPosition = CVector(1.0f, 0.0f, 0.0f);
-	mColliderLine.Set(this, nullptr, CVector(1.0f, 3.5f, 0.0f), CVector(1.0f, -1.0f, 0.0f));
+	mColliderLine.Set(this, nullptr, CVector(0.0f, 3.5f, 0.0f), CVector(0.0f, 0.0f, 0.0f));
 }
 
 void CXPlayer::Collision(CCollider* m, CCollider* o)
