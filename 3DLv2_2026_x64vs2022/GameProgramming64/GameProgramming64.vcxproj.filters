@@ -46,6 +46,9 @@
     <Filter Include="ソース ファイル\BaseSystem\Collider">
       <UniqueIdentifier>{41086722-70ba-4d51-b68e-30a473bd29f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Game\Character\Player">
+      <UniqueIdentifier>{c54c8e91-1b58-4016-9ec8-7e2c1a7a8de5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CApplication.cpp">
@@ -168,9 +171,6 @@
     <ClCompile Include="CXCharacter.cpp">
       <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
     </ClCompile>
-    <ClCompile Include="CXPlayer.cpp">
-      <Filter>ソース ファイル\Game\Character</Filter>
-    </ClCompile>
     <ClCompile Include="CCollider.cpp">
       <Filter>ソース ファイル\BaseSystem\Collider</Filter>
     </ClCompile>
@@ -185,6 +185,12 @@
     </ClCompile>
     <ClCompile Include="CCollisionManager.cpp">
       <Filter>ソース ファイル\BaseSystem\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CXPlayer.cpp">
+      <Filter>ソース ファイル\Game\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerIdle.cpp">
+      <Filter>ソース ファイル\Game\Character\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,9 +326,6 @@
     <ClInclude Include="CXCharacter.h">
       <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
     </ClInclude>
-    <ClInclude Include="CXPlayer.h">
-      <Filter>ソース ファイル\Game\Character</Filter>
-    </ClInclude>
     <ClInclude Include="CCollider.h">
       <Filter>ソース ファイル\BaseSystem\Collider</Filter>
     </ClInclude>
@@ -337,6 +340,15 @@
     </ClInclude>
     <ClInclude Include="CCollisionManager.h">
       <Filter>ソース ファイル\BaseSystem\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="CXPlayer.h">
+      <Filter>ソース ファイル\Game\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerIdle.h">
+      <Filter>ソース ファイル\Game\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CState.h">
+      <Filter>ソース ファイル\Game\Character\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

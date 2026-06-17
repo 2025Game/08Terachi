@@ -1,12 +1,14 @@
-#include "CXPlayer.h"
+ï»¿#include "CXPlayer.h"
 #include "CCollisionManager.h"
 #include "CGameScene.h"
-#define GRAVITY 0.0625f // d—Í
+#define GRAVITY 0.0625f // é‡åŠ›
 void CXPlayer::Update()
 {
-	//‰Û‘è4.2 GRAVITY‚Ì‘å‚«‚³‚¾‚¯A‰º•ûŒü‚ÖˆÚ“®‚³‚¹‚é
+	//çŠ¶æ…‹ä›¾æ›´æ–°
+	mpState->Update();
+	//èª²é¡Œ4.2 GRAVITYã®å¤§ãã•ã ã‘ã€ä¸‹æ–¹å‘ã¸ç§»å‹•ã•ã›ã‚‹
 	mPosition = mPosition + CVector(0.0f, -GRAVITY, 0.0f);
-	//eƒNƒ‰ƒX‚ÌXV
+	//è¦ªã‚¯ãƒ©ã‚¹ã®æ›´æ–°
 	CXCharacter::Update();
 }
 
@@ -14,36 +16,43 @@ CXPlayer::CXPlayer()
 {
 	mPosition = CVector(1.0f, 0.0f, 0.0f);
 	mColliderLine.Set(this, &mMatrix, CVector(0.0f, 3.5f, 0.0f), CVector(0.0f, 0.0f, 0.0f));
+	//å¾…æ©ŸçŠ¶æ…‹ä›¾ä½œæˆ
+	mpIdle = std::make_unique<CPlayerIdle>();
+	//æœ€åˆä›¿å¾…æ©ŸçŠ¶æ…‹
+	//get()ä›¿ã€unique_ptrãŒä¿æŒã—ä›¶ã„ã‚‹ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹é–¢æ•°
+	mpState = mpIdle.get();
+	mpState->Start(this);
+	mState = mpState->State();
 }
 
 void CXPlayer::Collision(CCollider* m, CCollider* o)
 {
-	//©g‚ÌƒRƒ‰ƒCƒ_ƒ^ƒCƒv‚Ì”»’è
+	//è‡ªèº«ã®ã‚³ãƒ©ã‚¤ãƒ€ã‚¿ã‚¤ãƒ—ã®åˆ¤å®š
 	switch (m->Type()) {
-	case CCollider::EType::ELINE://ü•ªƒRƒ‰ƒCƒ_
-		//‘Šè‚ÌƒRƒ‰ƒCƒ_‚ªOŠpƒRƒ‰ƒCƒ_‚Ì
+	case CCollider::EType::ELINE://ç·šåˆ†ã‚³ãƒ©ã‚¤ãƒ€
+		//ç›¸æ‰‹ã®ã‚³ãƒ©ã‚¤ãƒ€ãŒä¸‰è§’ã‚³ãƒ©ã‚¤ãƒ€ã®æ™‚
 		if (o->Type() == CCollider::EType::ETRIANGLE)
 		{
-			CVector adjust;//’²®—pƒxƒNƒgƒ‹
-			//OŠpŒ`‚Æü•ª‚ÌÕ“Ë”»’è
+			CVector adjust;//èª¿æ•´ç”¨ãƒ™ã‚¯ãƒˆãƒ«
+			//ä¸‰è§’å½¢ã¨ç·šåˆ†ã®è¡çªåˆ¤å®š
 			if (CCollider::CollisionTriangleLine(
 				o, m, &adjust))
 			{
-				//ˆÊ’u‚ÌXV(mPosition + adjust)
+				//ä½ç½®ã®æ›´æ–°(mPosition + adjust)
 				mPosition = mPosition + adjust;
-				//s—ñ‚ÌXV
+				//è¡Œåˆ—ã®æ›´æ–°
 				CTransform::Update();
 			}
 		}
 		break;
 	}
 }
-//Õ“Ëˆ—
+//è¡çªå‡¦ç†
 void CXPlayer::Collision()
 {
-	//ƒRƒ‰ƒCƒ_‚Ì—Dæ“x•ÏX
+	//ã‚³ãƒ©ã‚¤ãƒ€ã®å„ªå…ˆåº¦å¤‰æ›´
 	mColliderLine.ChangePriority();
-	//Õ“Ëˆ—‚ğÀs
+	//è¡çªå‡¦ç†ã‚’å®Ÿè¡Œ
 	CCollisionManager::Instance()->Collision(
 		&mColliderLine, COLLISIONRANGE);
 

@@ -53,3 +53,7 @@ void CTransform::Update() {
 	//‡¬s—ñ‚Ìİ’è
 	mMatrix = mMatrixScale * mMatrixRotate * mMatrixTranslate;
 }
+const CVector& CTransform::Rotation() const
+{
+	return mRotation;
+}
