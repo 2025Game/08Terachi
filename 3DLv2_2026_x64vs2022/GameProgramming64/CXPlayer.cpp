@@ -4,25 +4,44 @@
 #define GRAVITY 0.0625f // 重力
 void CXPlayer::Update()
 {
-	//状態䛾更新
+	//状態の更新
 	mpState->Update();
+	//状態の切り替え
+	if (mState != mpState->State())
+	{
+		mState = mpState->State();
+		switch (mState) {
+		case EState::EIDLE:
+			mpState = mpIdle.get();
+			break;
+		case EState::EWALK:
+			mpState = mpWalk.get();
+			break;
+		default:
+			break;
+		}
+		mpState->Start(this);
+	}
 	//課題4.2 GRAVITYの大きさだけ、下方向へ移動させる
 	mPosition = mPosition + CVector(0.0f, -GRAVITY, 0.0f);
 	//親クラスの更新
 	CXCharacter::Update();
+
 }
 
 CXPlayer::CXPlayer()
 {
 	mPosition = CVector(1.0f, 0.0f, 0.0f);
 	mColliderLine.Set(this, &mMatrix, CVector(0.0f, 3.5f, 0.0f), CVector(0.0f, 0.0f, 0.0f));
-	//待機状態䛾作成
+	//待機状態の作成
 	mpIdle = std::make_unique<CPlayerIdle>();
-	//最初䛿待機状態
-	//get()䛿、unique_ptrが保持し䛶いるポインタを取得する関数
+	//最初待機状態
+	//get()、unique_ptrが保持しているポインタを取得する関数
 	mpState = mpIdle.get();
 	mpState->Start(this);
 	mState = mpState->State();
+	//歩く状態の作成
+	mpWalk = std::make_unique<CPlayerWalk>();
 }
 
 void CXPlayer::Collision(CCollider* m, CCollider* o)

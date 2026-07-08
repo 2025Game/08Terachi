@@ -4,15 +4,19 @@
 #define ROTATIONSPEED 2.0f
 void CPlayerIdle::Start(CXCharacter* parent)
 {
-	//親䛾ポインタを保存
+	//親のポインタを保存
 	mpParent = parent;
-	//アニメーション䛾変更
+	//アニメーションの変更
 	mpParent->ChangeAnimation(0, true, 60);
-	mState = EState::EIDLE; //状態䛾種類を待機䛻する
+	mState = EState::EIDLE; //状態の種類を待機する
 }
 void CPlayerIdle::Update()
 {
-	//Aキー䛷左回転、Dキー䛷右回転
+	if (mInput.Key('W'))
+	{
+		mState = EState::EWALK;
+	}
+	//Aキー左回転、Dキー右回転
 	if (mInput.Key('D'))
 	{
 		CVector r = mpParent->Rotation() + 

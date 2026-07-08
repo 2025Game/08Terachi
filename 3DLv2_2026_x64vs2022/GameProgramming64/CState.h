@@ -12,9 +12,9 @@ class CState
 {
 public:
 	virtual ~CState() {};
-	//状態?開始
+	//状態開始
 	virtual void Start(CXCharacter* parent) {};
-	//状態?更新
+	//状態更新
 	virtual void Update() {};
 	//衝突処理
 	//Collision(コライダ1, コライダ2)
@@ -22,6 +22,6 @@ public:
 	//状態?取得
 	EState State() { return mState; }
 protected:
-	EState mState; //状態?種類
-	CXCharacter* mpParent; //親?ポインタ
+	EState mState; //状態種類
+	CXCharacter* mpParent; //親ポインタ
 };
