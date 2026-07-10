@@ -22,6 +22,9 @@ void CXPlayer::Update()
 		case EState::EATTACK:
 			mpState = mpAttack.get();
 			break;
+		case EState::EJUMP:
+			mpState = mpJump.get();
+			break;
 		}
 		mpState->Start(this);
 	}
@@ -46,10 +49,13 @@ CXPlayer::CXPlayer()
 	//歩く状態の作成
 	mpWalk = std::make_unique<CPlayerWalk>();
 	mpAttack = std::make_unique<CPlayerAttack>();
+	mpJump = std::make_unique<CPlayerJump>();
 }
 
 void CXPlayer::Collision(CCollider* m, CCollider* o)
 {
+	//状態クラスの衝突処理
+	mpState->Collision(m, o);
 	//自身のコライダタイプの判定
 	switch (m->Type()) {
 	case CCollider::EType::ELINE://線分コライダ

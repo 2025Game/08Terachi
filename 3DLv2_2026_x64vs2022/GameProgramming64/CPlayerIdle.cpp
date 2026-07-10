@@ -15,6 +15,7 @@ void CPlayerIdle::Update()
 	if (mInput.Key('W'))
 	{
 		mState = EState::EWALK;
+		return;
 	}
 	//Aキー左回転、Dキー右回転
 	if (mInput.Key('D'))
@@ -32,6 +33,11 @@ void CPlayerIdle::Update()
 	if (mInput.Key('I'))
 	{
 		mState = EState::EATTACK;
+		return;
+	}
+	if (mInput.Key(VK_SPACE))
+	{
+		mState = EState::EJUMP;
 		return;
 	}
 }

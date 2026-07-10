@@ -20,22 +20,32 @@ void CPlayerWalk::Update()
 			CVector r = mpParent->Rotation() + CVector(0.0f, ROTATIONSPEED, 0.0f);
 			mpParent->Rotation(r);
 		}
-
 		CVector p = mpParent->Position();
 		mpParent->Position(p + mpParent->MatrixRotate().VectorZ() * VELOCITY);
-
+	}
+	if (mInput.Key('I'))
+	{
+		mState = EState::EATTACK;
+		return;
+	}
+	if (mInput.Key(VK_SPACE))
+	{
+		mState = EState::EJUMP;
+		return;
 	}
 	else
 	{
 		mState = EState::EIDLE;
 	}
 }
-
-		void CPlayerWalk::Start(CXCharacter * parent)
-		{
-			//親のポインタを保存
-			mpParent = parent;
-			//アニメーションの変更
-			mpParent->ChangeAnimation(1, true, 60);
-			mState = EState::EWALK; //状態の種類を歩くにする
-		}
+void CPlayerWalk::Start(CXCharacter * parent)
+{
+	//親のポインタを保存
+	mpParent = parent;
+	//アニメーションの変更
+	mpParent->ChangeAnimation(1, true, 60);
+	mState = EState::EWALK; //状態の種類を歩くにする
+	mpParent = parent;	
+	mpParent->ChangeAnimation(7, false, 60);
+	mState = EState::EJUMP;
+}
