@@ -416,3 +416,5 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/3DLv2_2026_x64vs2022/GameProgramming64/GameProgramming64.vcxproj
+/3DLv2_2026_x64vs2022/GameProgramming64/GameProgramming64.vcxproj.filters

@@ -1,12 +1,13 @@
 #pragma once
 class CCollider;
 class CXCharacter;
-//状態?種類
+//状態種類
 enum class EState
 {
-	ENONE, //状態?し
+	ENONE, //状態
 	EIDLE, //待機
 	EWALK, //歩き
+	EATTACK
 };
 class CState
 {
@@ -19,7 +20,7 @@ public:
 	//衝突処理
 	//Collision(コライダ1, コライダ2)
 	virtual void Collision(CCollider* m, CCollider* o) {};
-	//状態?取得
+	//状態取得
 	EState State() { return mState; }
 protected:
 	EState mState; //状態種類
