@@ -24,9 +24,9 @@ CCube::CCube()
 	(
 		this,
 		&mMatrix,
-		msModel.Triangles()[1].V0(),
-		msModel.Triangles()[1].V1(),
-		msModel.Triangles()[1].V2()
+		msModel.Triangles()[6].V0(),
+		msModel.Triangles()[6].V1(),
+		msModel.Triangles()[6].V2()
 	);
 
 }

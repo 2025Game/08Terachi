@@ -45,7 +45,7 @@ void CPlayerWalk::Start(CXCharacter * parent)
 	//アニメーションの変更
 	mpParent->ChangeAnimation(1, true, 60);
 	mState = EState::EWALK; //状態の種類を歩くにする
-	mpParent = parent;	
-	mpParent->ChangeAnimation(7, false, 60);
-	mState = EState::EJUMP;
+	//mpParent = parent;	
+	//mpParent->ChangeAnimation(7, false, 60);
+	//mState = EState::EJUMP;
 }

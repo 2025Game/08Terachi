@@ -8,8 +8,7 @@ public:
 	void Update();
 	void Collision(CCollider* m, CCollider* o) override;
 private:
-	//モデルデータ?インスタンス
+	//モデルデータインスタンス
 	static CModel msModel;
-	//コライダ?上面??付?る
 	CColliderTriangle mCollider[2];
 };

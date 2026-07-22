@@ -21,9 +21,6 @@ int strcmp(const char* s1, const char* s2)
 	//“¯‚¶‚È‚çˆø‚¢‚Ä0
 	return s1[i] - s2[i];
 }
-#else
-#include <string.h>
-#endif
 
 const std::vector<CTriangle>& CModel::Triangles() const
 {
@@ -309,3 +306,5 @@ void CModel::CreateVertexBuffer()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+#else
+#endif

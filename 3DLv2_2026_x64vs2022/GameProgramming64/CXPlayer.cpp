@@ -32,7 +32,6 @@ void CXPlayer::Update()
 	mPosition = mPosition + CVector(0.0f, -GRAVITY, 0.0f);
 	//親クラスの更新
 	CXCharacter::Update();
-
 }
 
 CXPlayer::CXPlayer()
