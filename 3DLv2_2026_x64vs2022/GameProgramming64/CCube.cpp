@@ -37,6 +37,12 @@ void CCube::Update()
 
 	CCollisionManager::Instance()->Collision(&mCollider[0], 50);
 	CCollisionManager::Instance()->Collision(&mCollider[1], 50);
+
+	CVector r = Rotation() + CVector(0.0f, 1.0f, 0.0f);
+	Rotation(r);
+
+	CCollisionManager::Instance()->Collision(&mCollider[0], COLLISIONRANGE);
+	CCollisionManager::Instance()->Collision(&mCollider[1], COLLISIONRANGE);
 }
 void CCube::Collision(CCollider* m, CCollider* o)
 {

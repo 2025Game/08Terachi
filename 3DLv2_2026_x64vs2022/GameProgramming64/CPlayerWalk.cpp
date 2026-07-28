@@ -22,6 +22,11 @@ void CPlayerWalk::Update()
 		}
 		CVector p = mpParent->Position();
 		mpParent->Position(p + mpParent->MatrixRotate().VectorZ() * VELOCITY);
+		mState = EState::EWALK;
+	}
+	else
+	{
+		mState = EState::EIDLE;
 	}
 	if (mInput.Key('I'))
 	{
@@ -33,10 +38,7 @@ void CPlayerWalk::Update()
 		mState = EState::EJUMP;
 		return;
 	}
-	else
-	{
-		mState = EState::EIDLE;
-	}
+
 }
 void CPlayerWalk::Start(CXCharacter * parent)
 {
@@ -44,8 +46,4 @@ void CPlayerWalk::Start(CXCharacter * parent)
 	mpParent = parent;
 	//アニメーションの変更
 	mpParent->ChangeAnimation(1, true, 60);
-	mState = EState::EWALK; //状態の種類を歩くにする
-	//mpParent = parent;	
-	//mpParent->ChangeAnimation(7, false, 60);
-	//mState = EState::EJUMP;
 }
