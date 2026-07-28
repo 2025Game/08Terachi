@@ -40,7 +40,8 @@ void CTransform::Update(const CVector& pos, const CVector& rot
 }
 
 //行列更新処理
-void CTransform::Update() {
+void CTransform::Update() 
+{
 	//拡大縮小行列の設定
 	mMatrixScale.Scale(mScale.X(), mScale.Y(), mScale.Z());
 	//回転行列の設定
@@ -52,8 +53,29 @@ void CTransform::Update() {
 	mMatrixTranslate.Translate(mPosition.X(), mPosition.Y(), mPosition.Z());
 	//合成行列の設定
 	mMatrix = mMatrixScale * mMatrixRotate * mMatrixTranslate;
+	//合成行列の設定
+//子に引き継ぐ合成行列の回転は移動のみ
+	mCombinedMatrix = mMatrixRotate * mMatrixTranslate;
+	//親がいる場合は、親の合成行列を掛ける
+	if (mpParent) {
+		mCombinedMatrix = mCombinedMatrix *
+			mpParent->mCombinedMatrix;
+
+	}
+	//自分が使用する合成行列には、拡大縮小行列を掛ける
+	mMatrix = mMatrixScale * mCombinedMatrix;
 }
 const CVector& CTransform::Rotation() const
 {
 	return mRotation;
+}
+
+CTransform::CTransform()
+{
+	mpParent = nullptr;
+}
+
+const CMatrix& CTransform::CombinedMatrix() const
+{
+	return mCombinedMatrix;
 }
