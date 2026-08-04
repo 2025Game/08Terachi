@@ -1,6 +1,9 @@
 ﻿#include "CXPlayer.h"
 #include "CCollisionManager.h"
 #include "CGameScene.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
+const float RAD_TO_DEG = 180.0f / (float)M_PI;
 #define GRAVITY 0.0625f // 重力
 void CXPlayer::Update()
 {
@@ -81,6 +84,19 @@ void CXPlayer::Collision(CCollider* m, CCollider* o)
 				//位置の更新(mPosition + adjust)
 				mPosition = mPosition + adjust;
 				//行列の更新
+				CTransform::Update();
+				CVector forward = (CVector(0.0f, 0.0f, 1.0f) * mMatrix + adjust);
+
+				// 2. 親がいる場合は親のローカル座標へ変換
+				if (o->Parent())
+				{
+					// 親のローカル座標へ変換
+					forward = forward * o->Parent()->CombinedMatrix().Inverse();
+				}
+				forward = forward - mPosition;
+				float angle = atan2f(forward.X(), forward.Z()) * RAD_TO_DEG;
+				mRotation.Y(angle);
+
 				CTransform::Update();
 			}
 		}
