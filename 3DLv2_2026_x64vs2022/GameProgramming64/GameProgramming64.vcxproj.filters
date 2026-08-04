@@ -16,12 +16,6 @@
     <Filter Include="ソース ファイル\Lib">
       <UniqueIdentifier>{275eb950-ff6a-4535-ac0c-c052fcd2fa52}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Game">
-      <UniqueIdentifier>{7f63a5f4-c394-4cb7-8da2-5334b02df3d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Game\Scene">
-      <UniqueIdentifier>{03e9e977-81ae-4047-b024-a557fa145f0e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\BaseSystem">
       <UniqueIdentifier>{54f7c2b3-a2ba-4c63-8c38-1d29d4f90c02}</UniqueIdentifier>
     </Filter>
@@ -40,13 +34,19 @@
     <Filter Include="ソース ファイル\BaseSystem\Object\Character\Model">
       <UniqueIdentifier>{6a29a97d-9e51-4df9-bc2f-45706126b7af}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Game\Character">
-      <UniqueIdentifier>{c50524bd-568a-4127-ab9c-5917ea3b69b0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\BaseSystem\Collider">
       <UniqueIdentifier>{41086722-70ba-4d51-b68e-30a473bd29f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Game\Character\Player">
+    <Filter Include="ソース ファイル\BaseSystem\Object\Character\Game">
+      <UniqueIdentifier>{7f63a5f4-c394-4cb7-8da2-5334b02df3d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\BaseSystem\Object\Character\Game\Scene">
+      <UniqueIdentifier>{03e9e977-81ae-4047-b024-a557fa145f0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\BaseSystem\Object\Character\Game\Character">
+      <UniqueIdentifier>{c50524bd-568a-4127-ab9c-5917ea3b69b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\BaseSystem\Object\Character\Game\Character\Player">
       <UniqueIdentifier>{c54c8e91-1b58-4016-9ec8-7e2c1a7a8de5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -99,16 +99,10 @@
     <ClCompile Include="CUi.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CCamera.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CVector.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CMatrix.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CTransform.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CBillBoard.cpp">
@@ -130,10 +124,10 @@
       <Filter>ソース ファイル\BaseSystem\Scene</Filter>
     </ClCompile>
     <ClCompile Include="CTitleScene.cpp">
-      <Filter>ソース ファイル\Game\Scene</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Scene</Filter>
     </ClCompile>
     <ClCompile Include="CApplication3.cpp">
-      <Filter>ソース ファイル\Game\Scene</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Scene</Filter>
     </ClCompile>
     <ClCompile Include="CMaterial.cpp">
       <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
@@ -148,7 +142,7 @@
       <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
     </ClCompile>
     <ClCompile Include="CGameScene.cpp">
-      <Filter>ソース ファイル\Game\Scene</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Scene</Filter>
     </ClCompile>
     <ClCompile Include="CTaskManager.cpp">
       <Filter>ソース ファイル\BaseSystem\Task</Filter>
@@ -187,22 +181,28 @@
       <Filter>ソース ファイル\BaseSystem\Collider</Filter>
     </ClCompile>
     <ClCompile Include="CXPlayer.cpp">
-      <Filter>ソース ファイル\Game\Character\Player</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Character\Player</Filter>
     </ClCompile>
     <ClCompile Include="CPlayerIdle.cpp">
-      <Filter>ソース ファイル\Game\Character\Player</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Character\Player</Filter>
     </ClCompile>
     <ClCompile Include="CPlayerWalk.cpp">
-      <Filter>ソース ファイル\Game\Character\Player</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Character\Player</Filter>
     </ClCompile>
     <ClCompile Include="CPlayerAttack.cpp">
-      <Filter>ソース ファイル\Game\Character\Player</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Character\Player</Filter>
     </ClCompile>
     <ClCompile Include="CPlayerJump.cpp">
-      <Filter>ソース ファイル\Game\Character\Player</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Character\Player</Filter>
     </ClCompile>
     <ClCompile Include="CCube.cpp">
-      <Filter>ソース ファイル\Game\Character\Player</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="CTransform.cpp">
+      <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -257,16 +257,10 @@
     <ClInclude Include="CUi.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CCamera.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CVector.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CMatrix.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CTransform.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CBillBoard.h">
@@ -291,10 +285,10 @@
       <Filter>ソース ファイル\BaseSystem\Scene</Filter>
     </ClInclude>
     <ClInclude Include="CTitleScene.h">
-      <Filter>ソース ファイル\Game\Scene</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="CApplication3.h">
-      <Filter>ソース ファイル\Game\Scene</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="CMaterial.h">
       <Filter>ソース ファイル\BaseSystem\Object\Character\Model</Filter>
@@ -312,7 +306,7 @@
       <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
     </ClInclude>
     <ClInclude Include="CGameScene.h">
-      <Filter>ソース ファイル\Game\Scene</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="CTaskManager.h">
       <Filter>ソース ファイル\BaseSystem\Task</Filter>
@@ -354,25 +348,31 @@
       <Filter>ソース ファイル\BaseSystem\Collider</Filter>
     </ClInclude>
     <ClInclude Include="CXPlayer.h">
-      <Filter>ソース ファイル\Game\Character\Player</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Character\Player</Filter>
     </ClInclude>
     <ClInclude Include="CPlayerIdle.h">
-      <Filter>ソース ファイル\Game\Character\Player</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Character\Player</Filter>
     </ClInclude>
     <ClInclude Include="CState.h">
-      <Filter>ソース ファイル\Game\Character\Player</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Character\Player</Filter>
     </ClInclude>
     <ClInclude Include="CPlayerWalk.h">
-      <Filter>ソース ファイル\Game\Character\Player</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Character\Player</Filter>
     </ClInclude>
     <ClInclude Include="CPlayerAttack.h">
-      <Filter>ソース ファイル\Game\Character\Player</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Character\Player</Filter>
     </ClInclude>
     <ClInclude Include="CPlayerJump.h">
-      <Filter>ソース ファイル\Game\Character\Player</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Character\Player</Filter>
     </ClInclude>
     <ClInclude Include="CCube.h">
-      <Filter>ソース ファイル\Game\Character\Player</Filter>
+      <Filter>ソース ファイル\BaseSystem\Object\Character\Game\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="CTransform.h">
+      <Filter>ソース ファイル\BaseSystem\Object\Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

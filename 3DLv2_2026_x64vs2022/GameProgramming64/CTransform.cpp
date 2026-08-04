@@ -79,3 +79,7 @@ const CMatrix& CTransform::CombinedMatrix() const
 {
 	return mCombinedMatrix;
 }
+const CVector& CTransform::Scale() const
+{
+	return mScale;
+}

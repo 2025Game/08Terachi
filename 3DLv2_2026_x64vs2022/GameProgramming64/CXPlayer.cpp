@@ -3,6 +3,7 @@
 #include "CGameScene.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include "CCamera.h"
 const float RAD_TO_DEG = 180.0f / (float)M_PI;
 #define GRAVITY 0.0625f // 重力
 void CXPlayer::Update()
@@ -35,6 +36,7 @@ void CXPlayer::Update()
 	mPosition = mPosition + CVector(0.0f, -GRAVITY, 0.0f);
 	//親クラスの更新
 	CXCharacter::Update();
+	CCamera::Instance()->Position(CVector(0.0f, 4.0f, 0.0f));
 }
 
 CXPlayer::CXPlayer()
@@ -52,6 +54,7 @@ CXPlayer::CXPlayer()
 	mpWalk = std::make_unique<CPlayerWalk>();
 	mpAttack = std::make_unique<CPlayerAttack>();
 	mpJump = std::make_unique<CPlayerJump>();
+	CCamera::Instance()->Parent(this);
 }
 
 void CXPlayer::Collision(CCollider* m, CCollider* o)
@@ -70,15 +73,8 @@ void CXPlayer::Collision(CCollider* m, CCollider* o)
 				o, m, &adjust))
 			{
 				//位置の更新
-//現在のワールドでの位置
+				//現在のワールドでの位置
 				mPosition = (CVector() * mMatrix + adjust);
-				if (o->Parent())
-				{
-					//親のローカル座標へ変換
-					mPosition = mPosition *
-						o->Parent()->CombinedMatrix().Inverse();
-
-				}
 				//親の設定
 				mpParent = o->Parent();
 				//位置の更新(mPosition + adjust)
@@ -87,17 +83,22 @@ void CXPlayer::Collision(CCollider* m, CCollider* o)
 				CTransform::Update();
 				CVector forward = (CVector(0.0f, 0.0f, 1.0f) * mMatrix + adjust);
 
-				// 2. 親がいる場合は親のローカル座標へ変換
+				//親がいる場合は親のローカル座標へ変換
 				if (o->Parent())
 				{
 					// 親のローカル座標へ変換
 					forward = forward * o->Parent()->CombinedMatrix().Inverse();
 				}
+				if (o->Parent())
+				{
+					//親のローカル座標へ変換
+					mPosition = mPosition *
+						o->Parent()->CombinedMatrix().Inverse();
+
+				}
 				forward = forward - mPosition;
 				float angle = atan2f(forward.X(), forward.Z()) * RAD_TO_DEG;
 				mRotation.Y(angle);
-
-				CTransform::Update();
 			}
 		}
 		break;
