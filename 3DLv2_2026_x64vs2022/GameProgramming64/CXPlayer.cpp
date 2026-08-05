@@ -75,12 +75,7 @@ void CXPlayer::Collision(CCollider* m, CCollider* o)
 				//位置の更新
 				//現在のワールドでの位置
 				mPosition = (CVector() * mMatrix + adjust);
-				//親の設定
-				mpParent = o->Parent();
-				//位置の更新(mPosition + adjust)
-				mPosition = mPosition + adjust;
-				//行列の更新
-				CTransform::Update();
+				
 				CVector forward = (CVector(0.0f, 0.0f, 1.0f) * mMatrix + adjust);
 
 				//親がいる場合は親のローカル座標へ変換
@@ -88,13 +83,11 @@ void CXPlayer::Collision(CCollider* m, CCollider* o)
 				{
 					// 親のローカル座標へ変換
 					forward = forward * o->Parent()->CombinedMatrix().Inverse();
-				}
-				if (o->Parent())
-				{
-					//親のローカル座標へ変換
-					mPosition = mPosition *
-						o->Parent()->CombinedMatrix().Inverse();
-
+					mPosition = mPosition * o->Parent()->CombinedMatrix().Inverse();
+					//親の設定
+				    mpParent = o->Parent();
+				    //行列の更新
+				    CTransform::Update();
 				}
 				forward = forward - mPosition;
 				float angle = atan2f(forward.X(), forward.Z()) * RAD_TO_DEG;
