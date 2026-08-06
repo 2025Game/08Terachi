@@ -84,11 +84,11 @@ void CXPlayer::Collision(CCollider* m, CCollider* o)
 					// 親のローカル座標へ変換
 					forward = forward * o->Parent()->CombinedMatrix().Inverse();
 					mPosition = mPosition * o->Parent()->CombinedMatrix().Inverse();
-					//親の設定
+				}
+				//親の設定
 				    mpParent = o->Parent();
 				    //行列の更新
 				    CTransform::Update();
-				}
 				forward = forward - mPosition;
 				float angle = atan2f(forward.X(), forward.Z()) * RAD_TO_DEG;
 				mRotation.Y(angle);
