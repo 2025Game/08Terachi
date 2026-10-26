@@ -59,6 +59,7 @@ void CModelX::Load(const char* file)
 	SAFE_DELETE_ARRAY(buf);	//確保した領域を開放する
 }
 
+
 /*
 GetToken
 文字列データから、単語を1つ取得する
